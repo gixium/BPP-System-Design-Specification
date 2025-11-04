@@ -304,6 +304,22 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
 
 \section{Assumptions, dependencies and constraints}
 
+In order to satisfy all the goals, the system requires the following assumptions to be met:
+\begin{itemize}  
+	\item \textbf{[A1] Compliance with guidelines:} All users (registered and unregistered) are expected to follow the platform’s rules and guidelines and provide accurate, up-to-date information.
+	\item \textbf{[A2] Valid credentials:} To use the service, registered users are expected to have a valid email address.
+	\item \textbf{[A3] User’s mobile device:} The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.
+	\item \textbf{[A4] Sensor reliability:} GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.
+	\item \textbf{[A5] GPS data detection:} The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).
+	\item \textbf{[A6] Accelerometer and Gyroscope sensitivity:} Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.
+\end{itemize}
+In addition, the systems requires some certain dependencies:
+\begin{itemize}  
+	\item \textbf{[D1] Reliable internet access:} All users (registered and unregistered) shall have a stable internet connection to perform certain actions.
+	\item \textbf{[D2] Weather-forecast Service API:} The weather forecast service API must be correctly implemented, sufficiently available, and functioning correctly.
+	\item \textbf{[D3] Navigation-system Service API:} The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.
+\end{itemize}
+
 %------------------------------------------------------
 \chapter{Specific Requirements}
 
