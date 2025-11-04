@@ -63,8 +63,14 @@
 \usepackage{tabularx}
 \usepackage{longtable} % Tables that can span several pages
 \usepackage{colortbl}
-\usepackage{longtable}
 \usepackage{geometry}
+\usepackage{array}      % per newcolumntype e \arraybackslash
+\usepackage{booktabs}   % per \toprule \midrule \bottomrule
+\usepackage{pifont}     % per i segni di spunta/croce
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\hspace*{0.25cm}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} 
+
 
 % PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
 \usepackage{algorithm}
@@ -345,7 +351,7 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
     
     After trip recording, the system calls a weather API for data concerning the trip's time interval: the system then receives weather information (e.g, temperature, wind) and links it to the trip.
     
-    \begin{itemize}\item{Phenomena covered: P18, P10.}\end{itemize}
+    \begin{itemize}\item{Phenomena covered: P10, P18.}\end{itemize}
     
     \subsubsection*{Scenario 10: User Account Deletion}
     
@@ -353,6 +359,86 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
     
     \begin{itemize}\item{Phenomena covered: None specifically.}\end{itemize}
 
+\subsubsection*{Coverage: Scenarios VS Phenomena}
+    \begin{center}
+        \begin{longtable}{@{}l *{23}{R{0.25cm}}@{}}
+        \toprule
+         & \rotatebox{90}{\textbf{P1}} &
+        \rotatebox{90}{\textbf{P2}} &
+        \rotatebox{90}{\textbf{P3}} &
+        \rotatebox{90}{\textbf{P4}} &
+        \rotatebox{90}{\textbf{P5}} &
+        \rotatebox{90}{\textbf{P6}} &
+        \rotatebox{90}{\textbf{P7}} &
+        \rotatebox{90}{\textbf{P8}} &
+        \rotatebox{90}{\textbf{P9}} &
+        \rotatebox{90}{\textbf{P10}} &
+        \rotatebox{90}{\textbf{P11}} &
+        \rotatebox{90}{\textbf{P12}} &
+        \rotatebox{90}{\textbf{P13}} &
+        \rotatebox{90}{\textbf{P14}} &
+        \rotatebox{90}{\textbf{P15}} &
+        \rotatebox{90}{\textbf{P16}} &
+        \rotatebox{90}{\textbf{P17}} &
+        \rotatebox{90}{\textbf{P18}} &
+        \rotatebox{90}{\textbf{P19}} &
+        \rotatebox{90}{\textbf{P20}} &
+        \rotatebox{90}{\textbf{P21}} &
+        \rotatebox{90}{\textbf{P22}} &
+        \rotatebox{90}{\textbf{P23}} \\
+        \midrule
+        \endfirsthead
+        \toprule
+         & \rotatebox{90}{\textbf{P1}} &
+        \rotatebox{90}{\textbf{P2}} &
+        \rotatebox{90}{\textbf{P3}} &
+        \rotatebox{90}{\textbf{P4}} &
+        \rotatebox{90}{\textbf{P5}} &
+        \rotatebox{90}{\textbf{P6}} &
+        \rotatebox{90}{\textbf{P7}} &
+        \rotatebox{90}{\textbf{P8}} &
+        \rotatebox{90}{\textbf{P9}} &
+        \rotatebox{90}{\textbf{P10}} &
+        \rotatebox{90}{\textbf{P11}} &
+        \rotatebox{90}{\textbf{P12}} &
+        \rotatebox{90}{\textbf{P13}} &
+        \rotatebox{90}{\textbf{P14}} &
+        \rotatebox{90}{\textbf{P15}} &
+        \rotatebox{90}{\textbf{P16}} &
+        \rotatebox{90}{\textbf{P17}} &
+        \rotatebox{90}{\textbf{P18}} &
+        \rotatebox{90}{\textbf{P19}} &
+        \rotatebox{90}{\textbf{P20}} &
+        \rotatebox{90}{\textbf{P21}} &
+        \rotatebox{90}{\textbf{P22}} &
+        \rotatebox{90}{\textbf{P23}} \\
+        \midrule
+        \endhead
+        \textbf{S1}
+         & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+        \textbf{S2}
+         & \xmark & \cmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+        \textbf{S3}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+        \textbf{S4}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \cmark \\
+        \textbf{S5}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark & \cmark & \xmark \\
+        \textbf{S6}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark \\
+        \textbf{S7}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
+        \textbf{S8}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark & \cmark & \xmark \\
+        \textbf{S9}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+        \textbf{S10}
+         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+        \bottomrule
+        \\
+        \caption{Scenario $\times$ Phenomena Coverage Matrix}
+        \end{longtable}
+    \end{center}
 
 
 \subsection{Domain class diagram}
