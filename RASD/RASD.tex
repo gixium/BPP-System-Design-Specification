@@ -291,7 +291,69 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
 \section{Product perspective}
 
 
-\subsection{Scenarios}
+\section{Scenarios}
+
+    \subsubsection*{Scenario 1: User Registration}
+    
+    A new user downloads BBP and wants access to all the functionalities of the service. They provide email, password and accept the terms of service. The system validates the email, creates an account and requests consent for sensor's data use, location and data collection. After confirmation from the user, the service stores their preferences. Finally, the user becomes "registered" and can use both personal and collaborative features.
+    
+    \begin{itemize}\item{Phenomena covered: P4.}\end{itemize}
+    
+    \subsubsection*{Scenario 2: Trip: Automatic recording}
+    
+    The user starts cycling. The system detects such activity and starts collecting data from the device's sensors (GPS, accelerometer, gyroscope), in order to obtain performance metrics (e.g., average speed during the trip); the recording of data proceeds also in the case of network disruptions. When the user is finished, the system stops the recording, calculates trip metrics (e.g., distance, duration, average speed) and shows a summary. 
+    
+    \begin{itemize}\item{Phenomena covered: P2, P5, P9, P12, P13, P20.}\end{itemize}
+    
+    \subsubsection*{Scenario 3: Bike path: Manual Mode}
+    
+    A registered user creates a new bike path by entering start, finish, and the ordered streets. For each street, they specify the status (i.e., the overall condition) and irregularities (e.g., potholes). The system validates streets (checking for compliance) and stores the new path as public data.
+    
+    \begin{itemize}\item{Phenomena covered: P6, P16, P23.}\end{itemize}
+    
+    \subsubsection*{Scenario 4: Bike path: Automatic Mode}
+    
+    The user starts cycling; the system detects it thanks to the device's sensors (GPS, accelerometer, gyroscope). While the user cycles, the system acquires data from the sensors and generates a candidate bike path. After the ride, the system shows the user all detected obstacles. The user reviews and confirms or corrects them, then approves publication. The system updates the database's street data, based on information freshness and overall number of confirmations.
+    
+    \begin{itemize}\item{Phenomena covered: P7, P9, P14, P20, P23.}\end{itemize}
+    
+    \subsubsection*{Scenario 5: Merging of information}
+    
+    Several users travel the same street on different days. Each one signals the presence or contradicts the presence of potholes (data). The system updates the street’s status (i.e., overall condition) based on freshness and number of confirmations, then updates the score of any path including that street.
+    
+    \begin{itemize}\item{Phenomena covered: P17, P21, P22.}\end{itemize}
+    
+    \subsubsection*{Scenario 6: Bike Path Query from Origin to Destination}
+    
+    A user of any kind (registered o not) specifies Origin and Destination. The system retrieves all available bike paths, ranks them by overall score and shows them to the user, ordered by efficiency.
+    
+    \begin{itemize}\item{Phenomena covered: P8, P15, P21.}\end{itemize}
+    
+    \subsubsection*{Scenario 7: Street Safety Validation}
+    
+    When a user creates a bike path, the system calls the external API of a navigation service to check for road compliance, in respect to safety features (average bike speed limit, roadway width, traffic volume, dedicated bike lanes, etc.). Is any street is found unallowed, the publication process is aborted and alternatives may be suggested.
+    
+    \begin{itemize}\item{Phenomena covered: P11, P16, P19.}\end{itemize}
+    
+    \subsubsection*{Scenario 8: Street Status Update and Bike Path Score Recomputing}
+    
+    When a street’s condition changes and a user reports it, the system updates the status of the street and then recomputes the score of all bike paths including that street. Recomputed scores affect Origin-Destination ordering for the bike path query.
+    
+    \begin{itemize}\item{Phenomena covered: P17, P21, P22.}\end{itemize}
+    
+    \subsubsection*{Scenario 9: Trip: Weather Data Association}
+    
+    After trip recording, the system calls a weather API for data concerning the trip's time interval: the system then receives weather information (e.g, temperature, wind) and links it to the trip.
+    
+    \begin{itemize}\item{Phenomena covered: P18, P10.}\end{itemize}
+    
+    \subsubsection*{Scenario 10: User Account Deletion}
+    
+    A user chooses to leave the service by deleting their account. The system confirms the request and removes personal data according to the terms of service, while keeping published bike paths in anonymized form. A confirmation message is shown.
+    
+    \begin{itemize}\item{Phenomena covered: None specifically.}\end{itemize}
+
+
 
 \subsection{Domain class diagram}
 
