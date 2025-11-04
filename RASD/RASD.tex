@@ -335,6 +335,46 @@ In addition, the systems requires some certain dependencies:
 
 \section{Functional Requirements}
 
+\begin{itemize}
+	\item \textbf{Account Management}
+	    \begin{itemize}
+			\item \textbf{[R1]} The system shall allow potential service consumers to create accounts.
+			\item \textbf{[R2]} Users shall be able to securely login and logout using a username-password system or third-party authentication.
+			\item \textbf{[R3]} Users shall be able to recover their accounts using a password-recovery feature.
+			\item \textbf{[R4]} The system shall present a consent flow to collect explicit permission for background location/activity recognition and sensor data processing, storing such decision.
+			\item \textbf{[R5]} Registered users shall be able to configure preferred units of measure and language.
+	    \end{itemize}
+	\item \textbf{Registered and Unregistered Users Features}
+	    \begin{itemize}
+			\item \textbf{[R6]} The system shall accept user input for origin and destination and display all possible bike paths, ordered by score.
+	    \end{itemize}
+	\item \textbf{Registered Users Features}
+	    \begin{itemize}
+			\item \textbf{[R7]} Registered users shall be able to manually create bike paths (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes).
+			\item \textbf{[R8]} Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.
+			\item \textbf{[R9]} Registered users shall be able to delete their profiles.
+			\item \textbf{[R10]} Registered users shall be able to monitor trip metrics.
+			\item \textbf{[R11]} Registered users shall be able to manually start a trip.
+	    \end{itemize}
+	\item \textbf{Trip Metrics System}
+	    \begin{itemize}
+			\item \textbf{[R12]} The system shall record personal trips and present statistics (distance, time, average speed) and, when available, weather data associated with the trip period.
+			\item \textbf{[R13]} The system shall allow offline trip recording (street-queuing data et al) and automatically sync when connectivity is restored.
+	    \end{itemize}
+	\item \textbf{Automatic Bike Path Generator}
+	    \begin{itemize}
+			\item \textbf{[R14]} The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).
+			\item \textbf{[R15]} The system shall be able to save manually created bike paths, allowing registered users to create bike paths in "Manual Mode".
+			\item \textbf{[R16]} The system shall support auto-pause/auto-resume when the user stops/moves again below/above thresholds.
+			\item \textbf{[R17]} The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).
+			\item \textbf{[R18]} The system shall prevent registered users from publishing bike paths with unallowed streets.
+	    \end{itemize}
+	\item \textbf{Bike Path Assembler}
+	    \begin{itemize}
+			\item \textbf{[R19]} The system shall merge multiple contributions related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them.
+	    \end{itemize}
+\end{itemize}
+
 \subsection{Requirements Mapping}
 
 \subsection{Use case diagrams}
