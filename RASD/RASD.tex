@@ -477,7 +477,26 @@ In addition, the systems requires some certain dependencies:
 
 \subsection{Hardware Interfaces}
 
-\subsection{Software interfaces}
+\subsection{Software Interfaces}
+
+    The system interacts with many interfaces, categorized as internal services and external APIs, to provide its features.
+
+    \begin{itemize}
+    	\item{Internal Services}
+    	\begin{itemize}
+    	    \item \textbf{Authentication Service API} provides user authentication and authorization. When a user successfully login, the service generates a token that is used to authenticate all future request.
+    	    \item \textbf{Notification Service API} handles the delivery of notifications to users through dedicated channels (e.g., email), in order to inform users about events.
+    	    \item \textbf{Database Service API} allows the system to save and retrieve data from the platform's DBMS (database management system).
+    	\end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item{External APIs}
+    	\begin{itemize}
+    	    \item \textbf{Weather-forecast Service API} is used to retrieve weather data and integrate it into the user's trips.
+    	    \item \textbf{Navigation-system Service API} is used for evaluating street compliance, defining what kind of roads the user can include in the making of bike paths.
+    	\end{itemize}
+    \end{itemize}
 
 \subsection{Communication interfaces}
 
@@ -524,6 +543,8 @@ In addition, the systems requires some certain dependencies:
 \end{itemize}
 
 \subsection{Requirements Mapping}
+
+TODO Gianluca
 
 \subsection{Use case diagrams}
 
