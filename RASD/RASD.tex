@@ -471,9 +471,63 @@ In addition, the systems requires some certain dependencies:
 %------------------------------------------------------
 \chapter{Specific Requirements}
 
-\section{External Interface requirements}
+\section{External Interface Requirements}
+\subsection{User Interfaces}
 
-\subsection{User interfaces}
+This section describes the main screens and interactions presented to the user. We also include small mockups to illustrate the intended design.
+Our goal is to keep the interface simple, in particular, we concentrate on the following critical interfaces: \texttt{Home with current trip}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion}, and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
+
+\subsubsection{Login}
+When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths is available even without creating an account. The screen offers standard credential fields for email/username and password, as well as an optional third-party single sign on (SSO) method.
+
+If the user chooses to sign in and the credentials are correct, the application transitions directly to the \texttt{Home} screen. If authentication fails, the page remains visible and displays a concise message that explains what went wrong (e.g., invalid credentials or a temporary network issue). The same page also offers a clearly visible action to continue without an account, this option bypasses authentication and opens the public features of the application (access to bike-path search and results).
+
+\textbf{The login page will be presented again only to users not logged in}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/Log_in.jpg}
+    \caption{Possible Log In UI}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Home}
+
+When the application opens and no trip is currently active, the Home acts as a welcoming starting point with a message:
+
+\begin{center}
+\textit{``Start pedaling to see your real-time stats.''}
+\end{center}
+
+live metrics appear only during an actual ride. The text remains visible until recording starts; as soon as a trip is initiated, the central area is replaced by the real-time metrics.
+
+Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/home.jpg}
+    \caption{Home screen at start up}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/home_metrics.jpg}
+    \caption{Home screen during a trip}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Bike Path Search \& Results}
+
+
+\subsubsection{Manual Path Insertion}
+
+
+\subsubsection{past trip recordings}
+
+
+%-----------------------------------
+
 
 \subsection{Hardware Interfaces}
 
