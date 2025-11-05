@@ -36,6 +36,7 @@
 \usepackage[utf8]{inputenc} % UTF8 encoding
 \usepackage[T1]{fontenc} % Font encoding
 \usepackage[11pt]{moresize} % Big fonts
+\usepackage{enumitem}
 
 % PACKAGES FOR IMAGES
 \usepackage{graphicx}
@@ -458,6 +459,18 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
 
 
 \section{User characteristics}
+    The system recognizes two kinds of users: Unregistered User and Registered User.
+
+    \textbf{Unregistered users} can query the catalog by specifying Origin and Destination and then view all available bike paths, ordered by overall score; they do not contribute data nor access personal trip features.
+    
+    \textbf{Registered users}, which are presumed to own a mobile device with GPS and IMU Sensors, can:
+    \begin{enumerate}[label=(\roman*)]
+        \item record personal trips (automatic start/stop, offline capture, metrics), optionally enriched with weather;
+        \item create bike paths manually by entering start, finish and an ordered street sequence with perceived status/irregularities;
+        \item review and confirm or correct obstacles detected from their automatic recordings before publication;
+        \item publish approved content to the shared catalog, where the system verifies street compliance via the navigation API and then fuses contributions at street level, propagating updates to all affected paths;
+        \item manage account settings (consents, profile, deletion).
+    \end{enumerate}
 
 
 \section{Assumptions, dependencies and constraints}
