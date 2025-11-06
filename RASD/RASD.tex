@@ -502,14 +502,16 @@ This section describes briefly the main screens and interactions presented to th
 
 \textit{Look and feel can vary depending on the implementation}
 
-Our goal is to keep the interface simple, in particular, we concentrate on the following critical interfaces: \texttt{Home with current trip}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion}, and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
+Our goal is to keep the interface simple, in particular, we concentrate on the following critical interfaces: \texttt{Home with current trip}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion}, \texttt{past trip} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
 
-\subsubsection{Login}
-When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths is available even without creating an account. The screen offers standard credential fields for email/username and password, as well as an optional third-party single sign on (SSO) method.
+\subsubsection{Login \& Sign Up}
+When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths (public feature) is available even without creating an account. The screen offers standard credential fields for email/username and password, as well as an optional third-party single sign on (SSO) method.
 
-If the user chooses to sign in and the credentials are correct, the application transitions directly to the \texttt{Home} screen. If authentication fails, the page remains visible and displays a concise message that explains what went wrong (e.g., invalid credentials or a temporary network issue). The same page also offers a clearly visible action to continue without an account, this option bypasses authentication and opens the public features of the application (access to bike-path search and results).
+On first authentication, the application shall request explicit, informed consent for background data recording (location and activity) via an ‘I understand and agree’ acknowledgment. Until consent is granted, background recording shall remain disabled.
 
-\textbf{The login page will be presented again only to users not logged in}
+If the user chooses to sign in and the credentials are correct, the application transitions directly to the \texttt{Home} screen. If authentication fails, the page remains visible and displays a concise message that explains what went wrong (e.g., invalid credentials or a temporary network issue).
+
+\textbf{The login page will be presented again, at app startup, only to users not logged in}
 
 \begin{figure}
     \centering
@@ -522,9 +524,9 @@ If the user chooses to sign in and the credentials are correct, the application 
 
 When the application opens and no trip is currently active, the Home acts as a welcoming starting point.
 
-Live metrics appear only during an actual ride. The text remains visible until recording starts; as soon as a trip is initiated, the central area is replaced by the real-time metrics.
+Live metrics appear only during an actual ride. As soon as a trip is initiated or activated manually, the central area is replaced by the real-time metrics.
 
-The user will be prompted when it ends a trip in order to eventually update it and pusblish it.
+The user will be prompted when it ends a trip in order to eventually update it and publish it as a bike path.
 
 Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
 
@@ -542,12 +544,13 @@ Navigation is provided by a persistent bottom menu that is always available. The
     \label{fig:enter-label}
 \end{figure}
 
-\subsubsection{Bike Path Search \& Results}
+\subsubsection{Bike path search \& results}
 In this screen the user will be able to insert origin and destination and see the relevant bike path for its research.
 
 
-\subsubsection{Manual Path Insertion}
+\subsubsection{Manual path insertion}
 In this screen the user will be able to insert each street composing the path it wants to publish.
+
 %%magari espandiamo un pelo questa
 
 \begin{figure}
@@ -557,8 +560,12 @@ In this screen the user will be able to insert each street composing the path it
     \label{fig:enter-label}
 \end{figure}
 
-\subsubsection{past trip recordings}
-In this section the user will be able to see a list of all it's past recorded trips.
+\subsubsection{Past trip recordings}
+In this section the user will be able to see a list of all it's past recorded trips ordered by date. Each recorded trip item is clickable and takes to the \texttt{past trip page}
+
+\subsubsection{Past trip}
+
+
 
 \begin{figure}
     \centering
@@ -572,6 +579,7 @@ In this section the user will be able to see a list of all it's past recorded tr
 
 
 \subsection{Hardware Interfaces}
+
 
 to do matteo
 
