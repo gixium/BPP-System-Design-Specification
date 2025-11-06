@@ -455,6 +455,8 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
 
 \subsection{Domain class diagram}
 
+TO DO 
+
 
 \section{Product functions}
 TODO (already in the process) Gianluca
@@ -561,27 +563,55 @@ In this screen the user will be able to insert each street composing the path it
 \end{figure}
 
 \subsubsection{Past trip recordings}
-In this section the user will be able to see a list of all it's past recorded trips ordered by date. Each recorded trip item is clickable and takes to the \texttt{past trip page}
-
-\subsubsection{Past trip}
-
-
+In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item is clickable and takes to the \texttt{past trip page}
 
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{UI/past trip recording.jpg}
-    \caption{Home screen during a trip}
+    \caption{Past trip list}
     \label{fig:enter-label}
 \end{figure}
 
 
+\subsubsection{Past trip}
+This page shows all the metrics of the selected trip.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/past trip recording.jpg}
+    \caption{Analytics of a past trip}
+    \label{fig:enter-label}
+\end{figure}
+
+
+TODO Matteo e Simone -> illustrazioni
 %-----------------------------------
 
 
 \subsection{Hardware Interfaces}
+BBP targets Android/iOS smartphones, because people carry them during rides. Phones expose a rich set of on-board sensors and are able to compute and render the app itself. they’re ideal for continuous capture while cycling. 
+BBP relies on:
 
+\begin{itemize}
+  \item \textbf{GPS Interface} \\
+  Provides positioning and speed for trip recording and path tracing. 
+  Typical rate: $\sim$1 Hz during recording.
 
-to do matteo
+  \item \textbf{Accelerometer \& Gyroscope } \\
+  Raw motion samples to detect potholes/irregularities and support auto-pause. 
+
+  \item \textbf{Display / UI} \\
+  Renders HUD metrics, maps, path review and lists. 
+
+  \item \textbf{Haptics / Vibration} \\
+  Tactile alerts for start/stop and obstacle warnings.
+
+  \item \textbf{Local Storage} \\
+  On-device persistence for trips, cache of paths and weather. 
+
+  \item \textbf{Network Interface (Wi-Fi / Cellular)} \\
+  Connectivity for path search, weather, and profile sync. 
+\end{itemize}
 
 \subsection{Software Interfaces}
 
@@ -605,6 +635,19 @@ to do matteo
     \end{itemize}
 
 \subsection{Communication interfaces}
+\begin{itemize}
+  \item \textbf{HTTPS} \\
+  Primary channel between the mobile app and backend Service APIs (REST/JSON). 
+
+  \item \textbf{OAuth} \\
+  Authentication and authorization. 
+
+  \item \textbf{External Service APIs over HTTPS} \\
+  Weather and Safety/Navigation providers invoked by the backend via HTTPS. 
+  Timeouts, with limited retries, and result caching are enforced.
+
+\end{itemize}
+
 
 \section{Functional Requirements}
 
@@ -647,9 +690,6 @@ to do matteo
 			\item \textbf{[R19]} The system shall merge multiple contributions related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them.
 	    \end{itemize}
 \end{itemize}
-
-
-TODO Matteo e Simone -> illustrazioni
 
 \subsection{Requirements Mapping}
 
