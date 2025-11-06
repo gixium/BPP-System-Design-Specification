@@ -497,7 +497,10 @@ In addition, the systems requires some certain dependencies:
 \section{External Interface Requirements}
 \subsection{User Interfaces}
 
-This section describes the main screens and interactions presented to the user. We also include small mockups to illustrate the intended design.
+This section describes briefly the main screens and interactions presented to the user. We also include mockups to illustrate the intended design.
+
+\textit{Look and feel can vary depending on the implementation}
+
 Our goal is to keep the interface simple, in particular, we concentrate on the following critical interfaces: \texttt{Home with current trip}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion}, and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
 
 \subsubsection{Login}
@@ -516,13 +519,11 @@ If the user chooses to sign in and the credentials are correct, the application 
 
 \subsubsection{Home}
 
-When the application opens and no trip is currently active, the Home acts as a welcoming starting point with a message:
+When the application opens and no trip is currently active, the Home acts as a welcoming starting point.
 
-\begin{center}
-\textit{``Start pedaling to see your real-time stats.''}
-\end{center}
+Live metrics appear only during an actual ride. The text remains visible until recording starts; as soon as a trip is initiated, the central area is replaced by the real-time metrics.
 
-live metrics appear only during an actual ride. The text remains visible until recording starts; as soon as a trip is initiated, the central area is replaced by the real-time metrics.
+The user will be prompted when it ends a trip in order to eventually update it and pusblish it.
 
 Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
 
@@ -541,18 +542,37 @@ Navigation is provided by a persistent bottom menu that is always available. The
 \end{figure}
 
 \subsubsection{Bike Path Search \& Results}
+In this screen the user will be able to insert origin and destination and see the relevant bike path for its research.
 
 
 \subsubsection{Manual Path Insertion}
+In this screen the user will be able to insert each street composing the path it wants to publish.
+%%magari espandiamo un pelo questa
 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/manual_path.jpg}
+    \caption{Home screen during a trip}
+    \label{fig:enter-label}
+\end{figure}
 
 \subsubsection{past trip recordings}
+In this section the user will be able to see a list of all it's past recorded trips.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{UI/past trip recording.jpg}
+    \caption{Home screen during a trip}
+    \label{fig:enter-label}
+\end{figure}
 
 
 %-----------------------------------
 
 
 \subsection{Hardware Interfaces}
+
+to do matteo
 
 \subsection{Software Interfaces}
 
@@ -619,6 +639,9 @@ Navigation is provided by a persistent bottom menu that is always available. The
 	    \end{itemize}
 \end{itemize}
 
+
+TODO Matteo e Simone -> illustrazioni
+
 \subsection{Requirements Mapping}
 
 TODO (already in the process) Gianluca
@@ -629,25 +652,46 @@ TODO (already in the process) Gianluca
 
 \section{Performance Requirements}
 
+TODO Matteo
+
 \section{Design Constraints}
+
+
 
 \subsection{Standards compliance}
 
+
+
 \subsection{Hardware limitations}
+
+TODO Matteo
 
 \subsection{Any other constraint }
 
+
 \section{Software system attributes}
+
+TODO Matteo
 
 \subsection{Reliability}
 
+TODO Matteo
+
 \subsection{Availability}
+
+TODO Matteo
 
 \subsection{Security}
 
+TODO Matteo
+
 \subsection{Maintainability}
 
+TODO Matteo
+
 \subsection{Portability }
+
+TODO Matteo
 
 %------------------------------------------------------
 \chapter{Formal Analysis using Alloy}
