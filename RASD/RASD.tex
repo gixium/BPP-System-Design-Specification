@@ -270,10 +270,13 @@ BBP is a service where only registered users can store their bike trips and they
     \item \textbf{API (Application Programming Interface):} A set of protocols and tools that enable different software applications to communicate with each other.
     \item \textbf{JSON (JavaScript Object Notation):} A lightweight data-interchange format that is easily readable and writable by both humans and machines.
     \item \textbf{UI (User Interface):} The interface through which users interact with the platform, encompassing buttons, screens, and navigation elements.
+    \item \textbf{TTL (time-to-live ):} Maximum duration for a cache entry to be considered valid.
     \item \textbf{Redundancy:} The inclusion of supplementary components or systems to ensure reliability and availability in the event of a primary component failure.
     \item \textbf{Scalability:} The system's capacity to manage a growing number of users or increased load by incorporating additional resources without significant degradation in performance.
     \item \textbf{Uptime:} The period during which a system is fully operational and accessible to users without interruption.
     \item \textbf{Backup:} The process of duplicating and archiving data to ensure restorability in the event of loss or damage to the original data.
+    
+    %dovremmo aggiungere la definizione di cache?
 
 \end{itemize}
 
@@ -548,12 +551,11 @@ Navigation is provided by a persistent bottom menu that is always available. The
 
 \subsubsection{Bike path search \& results}
 In this screen the user will be able to insert origin and destination and see the relevant bike path for its research.
-
+%The system shows the first top 10 results and eventually loads more results as the user navigate the list.
 
 \subsubsection{Manual path insertion}
 In this screen the user will be able to insert each street composing the path it wants to publish.
-
-%%magari espandiamo un pelo questa
+%%magari espandiamo un filo questa
 
 \begin{figure}
     \centering
@@ -584,7 +586,7 @@ This page shows all the metrics of the selected trip.
 \end{figure}
 
 
-TODO Matteo e Simone -> illustrazioni
+\textbf{TODO Matteo e Simone -> illustrazioni}
 %-----------------------------------
 
 
@@ -693,46 +695,97 @@ BBP relies on:
 
 \subsection{Requirements Mapping}
 
-TODO (already in the process) Gianluca
+\textbf{TODO (already in the process) Gianluca}
 
 \subsection{Use case diagrams}
 
 \subsection{Use Cases}
-
 \section{Performance Requirements}
 
-TODO Matteo
+\subsection{Client}
+% testo di introduzione al paragrafo????
+
+\subsubsection{Responsiveness Targets }
+To ensure a usable experience, the app must:
+\begin{itemize}
+  \item Acknowledge a user tap within \textbf{100\,ms} (visual/haptic feedback). 
+  \item Complete the resulting UI action within \textbf{300\,ms}.
+  \item Delivery of push notifications (e.g., ``path ready for review'') within \textbf{30\,s} of the triggering event.
+  \item When fetching paths or other data from the backend it must \textbf{cache} these data with a reasonable TTL (around 30 minutes).
+\end{itemize}
+
+\subsection{Server}
+In Italy there are approximately 22 million people who cycle at least once a week and about 3.8–4.0 million adults (between 18 and 69 years of age) ride daily for habitual trips. Assuming an initial participation of 5\% of daily cyclists, we estimate around 200,000 daily users\footnote{Data retrieved from the "Istituto Superiore di Sanità" 
+\hyperlink{https://www.epicentro.iss.it/passi/dati/mobilita-attiva}{\underline{website}}}.
+
+Even in burst conditions where many users hit the backend simultaneously, the platform must guarantee:
+\begin{itemize}
+  \item Server responses to client data requests within \textbf{2\,s}.
+  \item Support for at least \textbf{10\%} of the daily avereage users as concurrent requests without perceptible degradation.
+\end{itemize}
 
 \section{Design Constraints}
 
+\begin{itemize}
+\subsection{Standards compliance:}
+    \item \textbf{Privacy and Data Protection Standards:}
+    \begin{itemize}
+        \item The platform must comply with the european \textbf{General Data Protection Regulation (GDPR)} to protect the privacy and personal data of users and be able to operate in europe.
+    \end{itemize}
 
+    \item \textbf{Security Standards:}
+    \begin{itemize}
+        \item Passwords and sensitive user data must be encrypted following \textbf{AES-256} encryption standards.
+    \end{itemize}
 
-\subsection{Standards compliance}
-
+    \item \textbf{API and Interoperability Standards:}
+    \begin{itemize}
+        \item The system APIs must facilitate integration with third-party systems by using standard protocols such as \textbf{HTTPS} and \textbf{JSON} authentication.
+    \end{itemize}
+\end{itemize}
 
 
 \subsection{Hardware limitations}
+\begin{itemize}
+\item the device must be able to connect to the internet communication.
+\end{itemize}
 
-TODO Matteo
+BBP, also needs to run smoothly on mobile devices, needs to run in background execution while maintaining 
+the device usable and have an acceptable response time to user actions. Therefore the following requirements should be met: 
+
+\begin{itemize}
+  \item \textbf{Supported OS:} Android/iOS.
+  \item \textbf{CPU:} with at least 4 cores; RAM $\geq$ 4\,GB; sufficient free storage.
+  \item \textbf{Hardware:} GPS, accelerometer and gyroscope.
+  \item \textbf{Permissions}: background location and activity/motion recognition enabled.
+\end{itemize}
 
 \subsection{Any other constraint }
+\begin{itemize}
+    \item the weather and the maps API should grant a good SLA according to the number of requests and system availability \textit{(see next)}.
+\end{itemize}
 
 
 \section{Software system attributes}
-
-TODO Matteo
-
 \subsection{Reliability}
+Since the app execution depends strictly on user Hardware performance, we focus our attention to what we can effectively control: \textbf{the backend infrastructure}.
 
-TODO Matteo
+To ensure reliability, the backend must guarantee a good fault tolerance in order to avoid service unavailability for path research and publication, for this purpose the system must also implement secure DB backups in order to guarantee the possibility to restore data even in presence of fatal failures.
 
 \subsection{Availability}
 
-TODO Matteo
+The backend must have an uptime of at least 99.9\% to ensure continuous availability.
+In order to guarantee these performances the backend may rely on a distributed system with high replication and consistency, avoiding single point of failures, indeed it would be recommended to use services (preferably) stateless, exposed behind a load balancer. 
 
 \subsection{Security}
-
-TODO Matteo
+\begin{itemize}
+    \item \textbf{User Data Protection:}  
+    All personal information, such as user data and personal trip, must be stored securely and only accessible to the authorized users.  
+    \item \textbf{Authentication and Authorization:}  
+    Users must log in using secure credentials, and the system should ensure that each user can only access their own data or data.  
+    \item \textbf{Secure Communications:}  
+    All personal user data exchanged with the backend must be encrypted to prevent interception.
+\end{itemize}
 
 \subsection{Maintainability}
 
