@@ -1,0 +1,50 @@
+@startuml
+class "Bike Path"{
+  - score: float
+  - creation_date: Date
+}
+class "Auto-generated"
+class "Manually generated"
+class User
+class "Registered User"{
+  - nickname: String
+  - email: String
+  - password: String
+}
+class Trip{
+  - total_distance: float
+  - average_speed: float
+}
+class Inventory
+entity Street{
+  - name: String
+  - status: STATUS
+  - obstacles: List<ObstaclesType>
+  - speed_limit: int
+  - type: TYPESTREET
+  - cars_frequency: float
+}
+entity Sensors
+entity GPS
+entity IMU
+entity API
+entity Weather
+entity Navigation
+"Bike Path" <|-- "Auto-generated"
+"Bike Path" <|-- "Manually generated"
+User <|-- "Registered User"
+Sensors <|-- GPS
+Sensors <|-- IMU
+API <|-- Weather
+API <|-- Navigation
+Inventory "1" *--	"1..*" "Bike Path"
+"Bike Path" "1..*" o-- "1..*"	Street
+User "1..*" --> "0..*"	Inventory : query
+"Registered User" "1" --> "0..*"	Trip : register
+"Registered User" "1" --> "0..*"	"Bike Path" : insert
+"Bike Path" "1..*" --> "1" Navigation : call
+"Auto-generated" "1..*" -->	"1..*" Sensors : acquire
+Trip "1..*" -->	"1..*"	Sensors : acquire
+Trip "1..*" --> "1"	Weather : call
+"Registered User" "1..*" --> "1..*" Street : report
+@enduml
