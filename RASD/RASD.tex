@@ -788,12 +788,23 @@ In order to guarantee these performances the backend may rely on a distributed s
 \end{itemize}
 
 \subsection{Maintainability}
-
-TODO Matteo
+\begin{itemize}
+    \item \textbf{Modular Architecture:}
+    The BBP platform adopts a service-oriented (microservices) backend to enable independent updates or replacements of components without impacting the whole system.
+    
+    \item \textbf{Documentation:}
+    All backend services and mobile app modules must be adequately documented (including APIs).
+    
+    \item \textbf{Automated Testing:}
+    Critical paths must be covered by automated tests to prevent regressions during updates.
+\end{itemize}
 
 \subsection{Portability }
-
-TODO Matteo
+\begin{itemize}
+    \item \textbf{Portability (App):} The BBP app must run on Android and iOS and adapt to multiple screen sizes. 
+    
+    \item \textbf{Portability (Backend):} Backend services must be easily deployable on managed platforms. Configuration should allow cloud/provider migration with minimal effort.  
+\end{itemize}
 
 %------------------------------------------------------
 \chapter{Formal Analysis using Alloy}
