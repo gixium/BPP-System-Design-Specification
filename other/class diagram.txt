@@ -2,20 +2,33 @@
 class "Bike Path"{
   - score: float
   - creation_date: Date
+  - start_point: Location
+  - end_point: Location
+  - creator: RegisteredUser
+  + computeScore()
 }
-class "Auto-generated"
+class "Auto-generated"{
+  + detectObstacles()
+}
 class "Manually generated"
 class User
 class "Registered User"{
   - nickname: String
   - email: String
   - password: String
+  - consent_given: boolean
+  + login()
+  + deleteAccount()
 }
 class Trip{
   - total_distance: float
   - average_speed: float
+  - start_time: Date
+  - end_time: Date
+  - path: List<Location>
+  + sync()
+  + computeMetrics()
 }
-class Inventory
 entity Street{
   - name: String
   - status: STATUS
@@ -23,28 +36,42 @@ entity Street{
   - speed_limit: int
   - type: TYPESTREET
   - cars_frequency: float
+  - confirmations: int
+  - last_update: Date
+  + mergeData()
 }
-entity Sensors
+entity Sensors{
+  - accuracy: float
+  - error_margin: float
+}
 entity GPS
 entity IMU
-entity API
-entity Weather
-entity Navigation
+interface API
+class Weather
+class Navigation
+class Report{
+  - status: STATUS
+  - date: Date
+  - street: Street
+}
 "Bike Path" <|-- "Auto-generated"
 "Bike Path" <|-- "Manually generated"
 User <|-- "Registered User"
 Sensors <|-- GPS
 Sensors <|-- IMU
-API <|-- Weather
-API <|-- Navigation
-Inventory "1" *--	"1..*" "Bike Path"
+API <|.. Weather
+API <|.. Navigation
 "Bike Path" "1..*" o-- "1..*"	Street
-User "1..*" --> "0..*"	Inventory : query
-"Registered User" "1" --> "0..*"	Trip : register
-"Registered User" "1" --> "0..*"	"Bike Path" : insert
-"Bike Path" "1..*" --> "1" Navigation : call
-"Auto-generated" "1..*" -->	"1..*" Sensors : acquire
-Trip "1..*" -->	"1..*"	Sensors : acquire
-Trip "1..*" --> "1"	Weather : call
-"Registered User" "1..*" --> "1..*" Street : report
+User "1..*" --> "0..*" "Bike Path" : + search()
+"Registered User" "1" --> "0..*"	Trip : + record()
+"Registered User" "1" --> "0..*"	"Bike Path" : + insert()
+"Bike Path" "0..*" --> "1" Navigation : + callNav()
+"Auto-generated" "1" -->	"1..*" Sensors : + acquire()
+Trip "1" -->	"1..*"	Sensors : + acquire()
+Trip "1" --> "0..1"	Weather : + callWeather()
+"Registered User" "1" --> "0..*" Report : + sendReport()
+Report "1" --> "1" Street : updateStatus()
+Trip "1" --> "0..1" "Auto-generated" : + generatePath()
+"Auto-generated" "1" --> "1" "Registered User" : + requestConfirmation()
+"Registered User" "1" --> "0..*" "Manually generated" : + inputStreets()
 @enduml
