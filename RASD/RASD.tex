@@ -703,6 +703,184 @@ BBP relies on:
 
 \subsection{Use Cases}
 % TODO Simone
+\subsubsection{[UC1] User registration}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& User registration\\
+    \hline
+    \textbf{Actors}& Unregistered users\\
+    \hline
+    \textbf{Entry Condition}& The user has opened the platform (BBP).\\
+    \hline
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user clicks the "Sign up" button.
+        \item (b) The system shows a registration form to the user.
+        \item (c) The user fills in the form.
+        \item (d) The user presses the "Register" button to confirm and send their data.
+        \item (e) The system confirms the registration and it redirects the user to the login page.
+    \end{itemize}\\
+    \hline
+    \textbf{Exit Condition}& The user has successfully registered and they can now log into the platform.\\
+    \hline
+    \textbf{Exception}& \begin{itemize}
+        \item (c) The system detects that the inserted email is already in use.
+        \item (d) The system detects that the registration form is missing some compulsory information or any invalid input.
+    \end{itemize}\\
+    \hline
+    \caption{UC1 Table}
+\end{longtable}
+\subsubsection{[UC2] Registered User login}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& Registered User login\\
+    \hline
+    \textbf{Actors}& \begin{itemize}
+        \item Registered Users
+        \item Unregistered Users
+    \end{itemize}\\
+    \hline
+    \textbf{Entry Condition}& The user opens the application (BBP).\\
+    \hline
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The system prompts the user to insert their email/username and password in a login form. Alternatively, the system offers an external authentication.
+        \item (b) The user fills in the form with the required data or they log in with the third party SSO method.
+        \item (c) The system verifies the credentials against the database.
+        \item (d) If credentials are correct, the system redirects the user to the home page.
+        \item (e) If credentials are wrong, the system prompts the user to try again or to recover their credentials.
+    \end{itemize}\\
+    \hline
+    \textbf{Exit Condition}& The user is logged in successfully into the platform.\\
+    \hline
+    \textbf{Exception}& (c) The system detects invalid credentials.\\
+    \hline
+    \caption{UC2 Table}
+\end{longtable}
+\subsubsection{[UC3] Registered User deletion}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& Registered User deletion\\
+    \hline
+    \textbf{Actors}& Registered Users\\
+    \hline
+    \textbf{Entry Condition}& The user is already logged in the application and they are on the settings.\\
+    \hline
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user clicks on "Delete your account".
+        \item (b) The systems asks the user if they are sure of the action.
+        \item (c) The user confirms their intentions.
+        \item (d) The systems deletes all the information regarding the user.
+        \item (e) The system redirects the user to the login page.
+    \end{itemize}\\
+    \hline
+    \textbf{Exit Condition}& The account is deleted from backend.\\
+    \hline
+    \textbf{Exception}& ---\\
+    \hline
+    \caption{UC3 Table}
+\end{longtable}
+\subsubsection{[UC4] Registered User records a Trip}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& Registered User records a Trip\\
+    \hline
+    \textbf{Actors}& \begin{itemize}
+        \item Registered users
+        \item Weather APIs
+    \end{itemize}\\
+    \hline
+    \textbf{Entry Condition}& The user is on the home page of the application (BBP).\\
+    \hline
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user click on the "Trip" button and presses on "Record".
+        \item (b) The system collects from the sensors GPS and IMU data.
+        \item (c) The user stops the recording of the trip.
+        \item (d) The system calls the Weather APIs, providing temporal and spatial data of the recorded trip.
+        \item (e) The APIs reply with the required data.
+        \item (f) The system collects the data and computes the performance metrics of the trip.
+        \item (g) The system shows to the user the resume of the trip.
+    \end{itemize}\\
+    \hline
+    \textbf{Exit Condition}& The users stops the recording of the trip.\\
+    \hline
+    \textbf{Exception}& (e) Weather is not available, APIs don't reply.\\
+    \hline
+    \caption{UC4 Table}
+\end{longtable}
+\subsubsection{[UC5] Registered User sees a past Trip}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& Registered User sees a past Trip\\
+    \hline
+    \textbf{Actors}& Registered Users\\
+    \hline
+    \textbf{Entry Condition}& The user is in the home page.\\
+    \hline
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user clicks on the "Trips" tab.
+        \item (b) The system retrieves from the database all user's past trips.
+        \item (c) The system shows the collection of trips to the user.
+        \item (d) The user picks a past trip.
+        \item (e) The system retrieves from the database all the information about the trip.
+        \item (f) The system shows the retrieved data to the user.
+    \end{itemize}\\
+    \hline
+    \textbf{Exit Condition}& The user exits from the "Trips" tab.\\
+    \hline
+    \textbf{Exception}& (b) No past trips from that user exist on the database.\\
+    \hline
+    \caption{UC5 Table}
+\end{longtable}
+\subsubsection{[UC6] Registered User inserts a Bike Path in Manual Mode}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& ...\\
+    \hline
+    \textbf{Actors}& ...\\
+    \hline
+    \textbf{Entry Condition}& ...\\
+    \hline
+    \textbf{Event Flow}& ...\\
+    \hline
+    \textbf{Exit Condition}& ...\\
+    \hline
+    \textbf{Exception}& ...\\
+    \hline
+    \caption{UC6 Table}
+\end{longtable}
+\subsubsection{[UC7] Registered User inserts a Bike Path in Automatic Mode}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& ...\\
+    \hline
+    \textbf{Actors}& ...\\
+    \hline
+    \textbf{Entry Condition}& ...\\
+    \hline
+    \textbf{Event Flow}& ...\\
+    \hline
+    \textbf{Exit Condition}& ...\\
+    \hline
+    \textbf{Exception}& ...\\
+    \hline
+    \caption{UC7 Table}
+\end{longtable}
+\subsubsection{[UC8] User searches a Bike Path}
+\begin{longtable}{| m{10em} | m{25em} |}
+    \hline
+    \textbf{Name}& ...\\
+    \hline
+    \textbf{Actors}& ...\\
+    \hline
+    \textbf{Entry Condition}& ...\\
+    \hline
+    \textbf{Event Flow}& ...\\
+    \hline
+    \textbf{Exit Condition}& ...\\
+    \hline
+    \textbf{Exception}& ...\\
+    \hline
+    \caption{UC8 Table}
+\end{longtable}
 
 \section{Performance Requirements}
 
