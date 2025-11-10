@@ -463,7 +463,106 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
 
 
 \section{Product functions}
-TODO (already in the process) Gianluca
+\subsection{Account Lifecycle}
+
+Allows a user to change from Unregistered to Registered by completing the registration process, providing necessary information (e.g., email, password) and accepting the terms of service. Immediately after registration, the system requests GPS and IMU Consent. Lack of consent restricts features to non-sensing operations; consent can be granted or revoked later. Accounts can be deleted at any time, after which only anonymized public content remains.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/1_AL.png}
+    \caption{Account Lifecycle: Registration and Consent}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Trip: Recording (Automatically or Manually)}
+
+Enables the system to record trips either through auto-detection (GPS/IMU) or manual initiation. During recording, a loss of motion automatically pauses the recording (users can also manually pause); then, the activity can be resumed, either automatically or manually. Upon stopping, the system computes metrics and saves the trip. Synchronization occurs when connectivity is available.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/2_TR.png}
+    \caption{Trip Recording: Auto and Manual Modes}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Trip: Review and Publishing}
+
+Allows the user to review a recorded trip summary and annotate onto it. The trip remains private unless the user explicitly chooses to publish it online, transforming it into a bike path; in such case, the system needs to validate the candidate bike path generated from the trip, therefore publishing or rejecting it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/3_TP.png}
+    \caption{Trip Review and Publishing: From Private Trip to Public Bike Path}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Trip: Weather Enrichment}
+
+Enhances a stored trip with weather data. The system queries the weather service. If successful, weather data related to the trip's timespan is attached to the trip. If the query fails, the system retries up to a policy-defined limit; if still unsuccessful, the trip will remain valid but without any weather information attached.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/4_WE.png}
+    \caption{Trip Weather Enrichment: Adding Environmental Context}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Bike-Path: Manual Creation}
+
+Enables the user to draft a bike path, specifying: starting point, finishing point and an ordered sequence of traversable streets, along with their status and the presence of any irregularities. Upon submission, the system validates the streets and checks the bike path for correctness and compliance. If valid, it is approved and then published; otherwise, it is rejected with optional specified reasons.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/5_BPM.png}
+    \caption{Bike Path Manual Creation: User-Defined Paths}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Bike-Path: Automatic Generation}
+
+Automatically generates a candidate bike path from a recorded trace obtained from GPS/IMU data processing. The user enters the review mode, confirming and/or correcting detected obstacles and street selection. Upon submission, the system validates the streets and checks the bike path for correctness and compliance. If valid, it is approved and then published; otherwise, it is rejected with optional reasons.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/6_BPA.png}
+    \caption{Bike Path Automatic Generation: From Recorded Trace to Bike Path}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{External API: Street Suitability}
+
+Submits all streets to a navigation system external API for any pending publication of a bike path, based on which each street is marked valid or invalid.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/7_API.png}
+    \caption{External API: Validating Street Suitability}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Query: from Origin to Destination}
+
+Allows the user to issue an Origin-to-Destination request. The system composes candidate bike paths, retrieves their scores, and presents the results, containing all the suitable bike paths ranked by the highest score. Selecting a result opens the details page of such bike path. After an update on the status of a street, rankings shall be recomputed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/8_OD.png}
+    \caption{Query: Finding the Best Bike Path from A to B}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Merging and Change Propagation}
+
+Accumulates contributions (i.e., status and presence of irregularities) from users to streets. The system merges information based on freshness and overall number of confirmations. When the street is merged, dependent bike paths (i.e., the ones containing that street) scores are recomputed according to the new information.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/pf/9_MER.png}
+    \caption{Merging and Change Propagation: Accumulating User Contributions}
+    \label{fig:enter-label}
+\end{figure}
+
+
 
 \section{User characteristics}
     The system recognizes two kinds of users: Unregistered User and Registered User.
