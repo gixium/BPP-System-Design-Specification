@@ -838,8 +838,8 @@ BBP relies on:
     \hline
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
     R7: Registered users shall be able to manually create bike paths (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes).&A1: Compliance with guidelines: All users (registered and unregistered) are expected to follow the platform’s rules and guidelines and provide accurate, up-to-date information.\\
-    R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
-    R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
+    R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
+    R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
     R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
     R19: The system shall merge multiple contributions related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them.&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     & D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
@@ -853,8 +853,8 @@ BBP relies on:
     \begin{longtable}{|p{0.45\linewidth}|p{0.45\linewidth}|}
     \hline
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
-    R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
-    R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
+    R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
+    R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
     R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
     R18: The system shall prevent registered users from publishing bike paths with unallowed streets.&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     &D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
@@ -927,56 +927,65 @@ BBP relies on:
     \end{longtable}
 
 
-\subsection*{Coverage Table: Goals VS Requirements, Domain Assumptions and Dependencies}
+\subsection*{Coverage Table: $R \land D \models G $.}
 
-	\begin{longtable}{@{}l *{8}{R{0.7cm}}@{}}
-	\toprule
-	 & \rotatebox{90}{\textbf{G1}} &
-	 \rotatebox{90}{\textbf{G2}} &
-	 \rotatebox{90}{\textbf{G3}} &
-	 \rotatebox{90}{\textbf{G4}} &
-	 \rotatebox{90}{\textbf{G5}} &
-	 \rotatebox{90}{\textbf{G6}} &
-	 \rotatebox{90}{\textbf{G7}} &
-	 \rotatebox{90}{\textbf{G8}} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	 & \rotatebox{90}{\textbf{G1}} &
-	 \rotatebox{90}{\textbf{G2}} &
-	 \rotatebox{90}{\textbf{G3}} &
-	 \rotatebox{90}{\textbf{G4}} &
-	 \rotatebox{90}{\textbf{G5}} &
-	 \rotatebox{90}{\textbf{G6}} &
-	 \rotatebox{90}{\textbf{G7}} &
-	 \rotatebox{90}{\textbf{G8}} \\
-	\midrule
-	\endhead
-	\textbf{R6}  & \cmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark \\
-	\textbf{R7}  & \cmark & \xmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-	\textbf{R8}  & \xmark & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-	\textbf{R10} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R11} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R12} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R13} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R14} & \cmark & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R15} & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-	\textbf{R16} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{R17} & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \xmark \\
-	\textbf{R18} & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \xmark \\
-	\textbf{R19} & \cmark & \xmark & \cmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-	\midrule
-	\textbf{A1} & \cmark & \xmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-	\textbf{A3} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{A4} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-	\textbf{A5} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-	\textbf{A6} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-	\textbf{D1} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
-	\textbf{D2} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-	\textbf{D3} & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \xmark \\
-	\bottomrule
-	\caption{Requirements and Assumptions $\times$ Goals Coverage Matrix}
-	\end{longtable}
+    \begin{longtable}{@{}l *{9}{R{0.5cm}}@{}}
+    \toprule
+     & \rotatebox{90}{\textbf{G1}} &
+     \rotatebox{90}{\textbf{G2}} &
+     \rotatebox{90}{\textbf{G3}} &
+     \rotatebox{90}{\textbf{G4}} &
+     \rotatebox{90}{\textbf{G5}} &
+     \rotatebox{90}{\textbf{G6}} &
+     \rotatebox{90}{\textbf{G7}} &
+     \rotatebox{90}{\textbf{G8}} &
+     \rotatebox{90}{\textbf{G9}} \\
+    \midrule
+    \endfirsthead
+    \toprule
+     & \rotatebox{90}{\textbf{G1}} &
+     \rotatebox{90}{\textbf{G2}} &
+     \rotatebox{90}{\textbf{G3}} &
+     \rotatebox{90}{\textbf{G4}} &
+     \rotatebox{90}{\textbf{G5}} &
+     \rotatebox{90}{\textbf{G6}} &
+     \rotatebox{90}{\textbf{G7}} &
+     \rotatebox{90}{\textbf{G8}} &
+     \rotatebox{90}{\textbf{G9}} \\
+    \midrule
+    \endhead
+    \textbf{R1}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R2}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R3}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R4}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R5}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R6}  & \cmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+    \textbf{R7}  & \cmark & \xmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R8}  & \xmark & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+    \textbf{R9}  & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{R10} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R11} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R12} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R13} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R14} & \cmark & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R15} & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R16} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{R17} & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark \\
+    \textbf{R18} & \cmark & \xmark & \xmark & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark \\
+    \textbf{R19} & \cmark & \xmark & \cmark & \xmark & \xmark & \cmark & \xmark & \cmark & \xmark \\
+    \midrule
+    \textbf{A1} & \cmark & \xmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{A2} & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+    \textbf{A3} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{A4} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+    \textbf{A5} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+    \textbf{A6} & \cmark & \cmark & \cmark & \cmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+    \textbf{D1} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+    \textbf{D2} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+    \textbf{D3} & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark \\
+    \bottomrule
+    \caption{Requirements and Assumptions $\times$ Goals Coverage Matrix (with Goal 9)}
+    \end{longtable}
 
 \subsection{Use case diagrams}
 % TODO Simone
