@@ -911,8 +911,22 @@ BBP relies on:
     \caption{Goal 8 mapping table}
     \end{longtable}
 
+    % Goal 9
+    \subsubsection*{Goal 9: Support a secure account lifecycle for registered users, including authentication, recovery, consent capture, and preferences management.}
+    \begin{longtable}{|p{0.45\linewidth}|p{0.45\linewidth}|}
+    \hline
+    \textbf{Requirements} & \textbf{Assumptions} \\ \hline
+    R1: The system shall allow potential service consumers to create accounts.&A2: Valid credentials: To use the service, registered users are expected to have a valid email address.\\
+    R2: Users shall be able to securely login and logout using a username-password system or third-party authentication.&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
+    R3: Users shall be able to recover their accounts using a password-recovery feature.&\\
+    R4: The system shall present a consent flow to collect explicit permission for background location/activity recognition and sensor data processing, storing such decision.&\\
+    R5: Registered users shall be able to configure preferred units of measure and language.&\\
+    R9: Registered users shall be able to delete their profiles.&\\
+    \hline
+    \caption{Goal 9 mapping table}
+    \end{longtable}
 
-\newpage
+
 \subsection*{Coverage Table: Goals VS Requirements, Domain Assumptions and Dependencies}
 
 	\begin{longtable}{@{}l *{8}{R{0.7cm}}@{}}
