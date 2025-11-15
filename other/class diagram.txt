@@ -6,12 +6,17 @@ class "Bike Path"{
   - end_point: Location
   - creator: RegisteredUser
   + computeScore()
+  + buildCandidates()
+  + selectPath()
+  + rank()
 }
 class "Auto-generated"{
   + detectObstacles()
 }
 class "Manually generated"
-class User
+class User{
+  + startRegistration()
+}
 class "Registered User"{
   - nickname: String
   - email: String
@@ -28,6 +33,11 @@ class Trip{
   - path: List<Location>
   + sync()
   + computeMetrics()
+  + autoDetectedCycling()
+  + autoPause()
+  + autoResume()
+  + storeTrip()
+  + newEdits()
 }
 entity Street{
   - name: String
@@ -62,16 +72,16 @@ Sensors <|-- IMU
 API <|.. Weather
 API <|.. Navigation
 "Bike Path" "1..*" o-- "1..*"	Street
-User "1..*" --> "0..*" "Bike Path" : + search()
-"Registered User" "1" --> "0..*"	Trip : + record()
+User "1..*" --> "0..*" "Bike Path" : + submitOD()
+"Registered User" "1" --> "0..*"	Trip : + manualStart()
 "Registered User" "1" --> "0..*"	"Bike Path" : + insert()
-"Bike Path" "0..*" --> "1" Navigation : + callNav()
+"Bike Path" "0..*" --> "1" Navigation : + callNavService()
 "Auto-generated" "1" -->	"1..*" Sensors : + acquire()
 Trip "1" -->	"1..*"	Sensors : + acquire()
 Trip "1" --> "0..1"	Weather : + callWeather()
 "Registered User" "1" --> "0..*" Report : + sendReport()
 Report "1" --> "1" Street : updateStatus()
-Trip "1" --> "0..1" "Auto-generated" : + generatePath()
+Trip "1" --> "0..1" "Auto-generated" : + publishAsPath()
 "Auto-generated" "1" --> "1" "Registered User" : + requestConfirmation()
-"Registered User" "1" --> "0..*" "Manually generated" : + inputStreets()
+"Registered User" "1" --> "0..*" "Manually generated" : + submit()
 @enduml
