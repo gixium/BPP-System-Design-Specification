@@ -992,11 +992,10 @@ BBP relies on:
     \caption{Requirements Mapping Coverage Table}
     \end{longtable}
 
-\subsection{Use case diagrams}
-% TODO Simone
+\subsection{Use case diagram}
+
 
 \subsection{Use Cases}
-% TODO Simone
 \subsubsection{[UC1] User registration}
 \begin{longtable}{| m{10em} | m{25em} |}
     \hline
@@ -1077,26 +1076,25 @@ BBP relies on:
     \hline
     \textbf{Name}& Registered User records a Trip\\
     \hline
-    \textbf{Actors}& \begin{itemize}
-        \item Registered users
-        \item Weather APIs
-    \end{itemize}\\
+    \textbf{Actors}& Registered users\\
     \hline
     \textbf{Entry Condition}& The user is on the home page of the application (BBP).\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
-        \item (a) The user click on the "Trip" button and presses on "Record".
-        \item (b) The system collects from the sensors GPS and IMU data.
-        \item (c) The user stops the recording of the trip.
-        \item (d) The system calls the Weather APIs, providing temporal and spatial data of the recorded trip.
-        \item (e) The APIs reply with the required data.
-        \item (f) The system collects the data and computes the performance metrics of the trip.
-        \item (g) The system shows to the user the resume of the trip.
+        \item (a) The user clicks on the "Trip" button and presses on "Record" or starts cycling.
+        \item (b) The system detects that cycling session has started and begins with collecting GPS and IMU data from the sensors.
+        \item (c) The user stops manually the recording of the trip or stops cycling.
+        \item (d) The system detects that trip has been stopped.
+        \item (e) The system calls the Weather APIs, providing temporal and spatial data of the recorded trip.
+        \item (f) The APIs reply with the required data.
+        \item (g) The system collects the weather data.
+        \item (h) The system computes the performance metrics of the trip.
+        \item (i) The system shows to the user the resume of the trip.
     \end{itemize}\\
     \hline
     \textbf{Exit Condition}& The users stops the recording of the trip.\\
     \hline
-    \textbf{Exception}& (e) Weather is not available, APIs don't reply.\\
+    \textbf{Exception}& (f) Weather is not available, APIs don't reply.\\
     \hline
     \caption{UC4 Table}
 \end{longtable}
@@ -1131,13 +1129,13 @@ BBP relies on:
     \hline
     \textbf{Actors}& Registered Users\\
     \hline
-    \textbf{Entry Condition}& The user clicks on the "Add Bike Path" button and they select the manual mode.\\
+    \textbf{Entry Condition}& The user clicks on the "Add Bike Path".\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
-        \item (a) The user provides starting point, ending point the name of the streets (sequently ordered), their status and eventual irregularities.
+        \item (a) The user provides starting point, ending point, the name of the streets (sequently ordered), their status and eventual irregularities.
         \item (b) The system calls the Navigation APIs to check if the inserted streets are suitable to be safe Bike Paths.
         \item (c) If all streets are suitable, the Bike Path gets published.
-        \item (d) If at least one street is not suitable, the user can edit the information and submit it again or they can quit the operation.
+        \item (d) If at least one street is not suitable, the system prompts the user to edit the information to make it suitable.
     \end{itemize}\\
     \hline
     \textbf{Exit Condition}& The Bike Path gets published or gets rejected.\\
@@ -1153,15 +1151,16 @@ BBP relies on:
     \hline
     \textbf{Actors}& Registered Users\\
     \hline
-    \textbf{Entry Condition}& The user is looking at one personal trip and click the "publish" button.\\
+    \textbf{Entry Condition}& The user is looking at one personal trip and clicks the "publish" button.\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
         \item (a) The system processes the GPS and IMU data regarding a trip to detect streets and possible irregularities, and it show them to the user.
-        \item (b) The user reviews the detected irregularities and they insert the status of the detected streets.
-        \item (c) If any corrections are required by the user, the system fixes the automatic-detected data.
-        \item (d) The system calls the Navigation APIs to verify suitability of the streets.
-        \item (e) If streets are suitable, the Bike Path gets published.
-        \item (f) If streets are not suitable, the Bike Path cannot get published.
+        \item (b) The system shows to the user the retrieved data and prompts them to review it.
+        \item (c) The user reviews the detected irregularities and they insert the status of the detected streets.
+        \item (e) If any corrections are required, the system fixes the automatic-detected data.
+        \item (f) The system calls the Navigation APIs to verify suitability of the streets.
+        \item (g) If streets are suitable, the Bike Path gets published.
+        \item (h) If streets are not suitable, the Bike Path cannot get published.
     \end{itemize}\\
     \hline
     \textbf{Exit Condition}& The Bike Path is published or rejected.\\
@@ -1180,7 +1179,7 @@ BBP relies on:
         \item Unregistered Users
     \end{itemize}\\
     \hline
-    \textbf{Entry Condition}& The user click on "Search" button.\\
+    \textbf{Entry Condition}& The user clicks on the "Search" button.\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
         \item (a) The user specifies a Destination to reach with their bike starting from the Origin.
@@ -1191,7 +1190,7 @@ BBP relies on:
     \hline
     \textbf{Exit Condition}& The user picks a Bike Path or cancels the operation.\\
     \hline
-    \textbf{Exception}& (b) No Bike Path suitable for the search is retrieved.\\
+    \textbf{Exception}& (b) No suitable Bike Paths are retrieved.\\
     \hline
     \caption{UC8 Table}
 \end{longtable}
