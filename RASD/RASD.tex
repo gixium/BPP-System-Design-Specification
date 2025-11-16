@@ -1068,7 +1068,7 @@ BBP relies on:
     \hline
     \textbf{Exit Condition}& The account is deleted from backend.\\
     \hline
-    \textbf{Exception}& ---\\
+    \textbf{Exception}& \\
     \hline
     \caption{UC3 Table}
 \end{longtable}
@@ -1127,51 +1127,71 @@ BBP relies on:
 \subsubsection{[UC6] Registered User inserts a Bike Path in Manual Mode}
 \begin{longtable}{| m{10em} | m{25em} |}
     \hline
-    \textbf{Name}& ...\\
+    \textbf{Name}& Registered User inserts a Bike Path in Manual Mode\\
     \hline
-    \textbf{Actors}& ...\\
+    \textbf{Actors}& Registered Users\\
     \hline
-    \textbf{Entry Condition}& ...\\
+    \textbf{Entry Condition}& The user clicks on the "Add Bike Path" button and they select the manual mode.\\
     \hline
-    \textbf{Event Flow}& ...\\
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user provides starting point, ending point the name of the streets (sequently ordered), their status and eventual irregularities.
+        \item (b) The system calls the Navigation APIs to check if the inserted streets are suitable to be safe Bike Paths.
+        \item (c) If all streets are suitable, the Bike Path gets published.
+        \item (d) If at least one street is not suitable, the user can edit the information and submit it again or they can quit the operation.
+    \end{itemize}\\
     \hline
-    \textbf{Exit Condition}& ...\\
+    \textbf{Exit Condition}& The Bike Path gets published or gets rejected.\\
     \hline
-    \textbf{Exception}& ...\\
+    \textbf{Exception}& (a) Invalid information are sent to the system.\\
     \hline
     \caption{UC6 Table}
 \end{longtable}
 \subsubsection{[UC7] Registered User inserts a Bike Path in Automatic Mode}
 \begin{longtable}{| m{10em} | m{25em} |}
     \hline
-    \textbf{Name}& ...\\
+    \textbf{Name}& Registered User inserts a Bike Path in Automatic Mode\\
     \hline
-    \textbf{Actors}& ...\\
+    \textbf{Actors}& Registered Users\\
     \hline
-    \textbf{Entry Condition}& ...\\
+    \textbf{Entry Condition}& The user is looking at one personal trip and click the "publish" button.\\
     \hline
-    \textbf{Event Flow}& ...\\
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The system processes the GPS and IMU data regarding a trip to detect streets and possible irregularities, and it show them to the user.
+        \item (b) The user reviews the detected irregularities and they insert the status of the detected streets.
+        \item (c) If any corrections are required by the user, the system fixes the automatic-detected data.
+        \item (d) The system calls the Navigation APIs to verify suitability of the streets.
+        \item (e) If streets are suitable, the Bike Path gets published.
+        \item (f) If streets are not suitable, the Bike Path cannot get published.
+    \end{itemize}\\
     \hline
-    \textbf{Exit Condition}& ...\\
+    \textbf{Exit Condition}& The Bike Path is published or rejected.\\
     \hline
-    \textbf{Exception}& ...\\
+    \textbf{Exception}& \\
     \hline
     \caption{UC7 Table}
 \end{longtable}
 \subsubsection{[UC8] User searches a Bike Path}
 \begin{longtable}{| m{10em} | m{25em} |}
     \hline
-    \textbf{Name}& ...\\
+    \textbf{Name}& User searches a Bike Path\\
     \hline
-    \textbf{Actors}& ...\\
+    \textbf{Actors}& \begin{itemize}
+        \item Registered Users
+        \item Unregistered Users
+    \end{itemize}\\
     \hline
-    \textbf{Entry Condition}& ...\\
+    \textbf{Entry Condition}& The user click on "Search" button.\\
     \hline
-    \textbf{Event Flow}& ...\\
+    \textbf{Event Flow}& \begin{itemize}
+        \item (a) The user specifies a Destination to reach with their bike starting from the Origin.
+        \item (b) The system retrieves all the Bike Paths that link the two points.
+        \item (c) The system computes the scores of the Bike Paths, according to their status and their efficiency to reach the destination.
+        \item (d) The system shows to the user the highest scoring Bike Paths, providing all the indications.
+    \end{itemize}\\
     \hline
-    \textbf{Exit Condition}& ...\\
+    \textbf{Exit Condition}& The user picks a Bike Path or cancels the operation.\\
     \hline
-    \textbf{Exception}& ...\\
+    \textbf{Exception}& (b) No Bike Path suitable for the search is retrieved.\\
     \hline
     \caption{UC8 Table}
 \end{longtable}
