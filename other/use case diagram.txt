@@ -1,0 +1,46 @@
+@startuml
+title Bike Path Application - Use Case Diagram
+
+actor "Registered User" as RU
+actor "Unregistered User" as GU
+
+rectangle "BBP" {
+
+    package "User Management" {
+        usecase "Register" as UC1
+        usecase "Login" as UC2
+        usecase "Delete Account" as UC3
+    }
+
+    package "Trip Management" {
+        usecase "Record Trip" as UC4
+        usecase "View Past Trip" as UC5
+    }
+
+    package "Bike Path Management" {
+        usecase "Insert Bike Path (Manual)" as UC6
+        usecase "Insert Bike Path (Automatic)" as UC7
+        usecase "Search Bike Path" as UC8
+    }
+}
+
+' Associations with Registered User
+RU --> UC1
+RU --> UC2
+RU --> UC3
+RU --> UC4
+RU --> UC5
+RU --> UC6
+RU --> UC7
+RU --> UC8
+
+' Associations with Guest / Unregistered User
+GU --> UC8
+
+' Include / Extend relationships
+UC4 ..> UC2 : <<include>>
+UC6 ..> UC2 : <<include>>
+UC7 ..> UC2 : <<include>>
+UC7 ..> UC6 : <<extend>>
+
+@enduml

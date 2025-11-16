@@ -1,0 +1,51 @@
+@startuml
+title Registered User Records a Trip - Sequence Diagram
+
+actor "Registered User" as U
+participant "Frontend (BBP)" as FE
+participant "Sensors (GPS/IMU)" as SENS
+participant "Backend API" as BE
+participant "Weather API" as WAPI
+
+== Trip Start ==
+
+alt Manual start
+    U -> FE : Click "Trip" → "Record"
+    FE -> SENS : Start trip detection
+else Automatic start
+    SENS -> FE : Cycling detected
+end
+
+FE -> SENS : Start GPS/IMU acquisition
+SENS --> FE : Continuous GPS/IMU stream
+
+== Trip Stop ==
+
+alt Manual stop
+    U -> FE : Stop recording
+else Automatic stop
+    SENS -> FE : Cycling stopped detected
+end
+
+FE -> FE : Detect trip stop
+
+FE -> BE : POST /trip/data {sensor data}
+
+== Weather Data Retrieval ==
+
+BE -> WAPI : Request weather data\n(time + GPS track)
+
+alt Weather available
+    WAPI --> BE : Weather data
+    BE --> FE : Weather data
+else Weather unavailable
+    WAPI --> BE : Timeout / Error
+    BE --> FE : Weather unavailable
+end
+
+== Metrics and Summary ==
+
+FE -> FE : Compute performance metrics
+FE -> U : Show trip summary
+
+@enduml

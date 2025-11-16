@@ -1,0 +1,36 @@
+@startuml
+title Registered User Inserts a Bike Path (Manual Mode) - Sequence Diagram
+
+actor "Registered User" as U
+participant "Frontend (BBP)" as FE
+participant "Backend API" as BE
+participant "Navigation API" as NAV
+database "Database" as DB
+
+== User Input ==
+
+U -> FE : Provide start/end points,\nstreet list, status, irregularities
+
+alt Invalid information (exception)
+    FE -> U : Show error: "Invalid input"
+else Valid information
+    FE -> BE : POST /bike-path {manual data}
+
+    == Street Suitability Check ==
+
+    BE -> NAV : Validate streets suitability
+
+    alt All streets suitable
+        NAV --> BE : Suitable
+        BE -> DB : Publish bike path
+        DB --> BE : Stored
+        BE --> FE : Bike path published
+        FE -> U : Show confirmation
+    else At least one street unsuitable
+        NAV --> BE : Not suitable
+        BE --> FE : Suggest editing information
+        FE -> U : Prompt corrections
+    end
+end
+
+@enduml

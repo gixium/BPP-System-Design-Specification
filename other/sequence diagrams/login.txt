@@ -1,0 +1,52 @@
+@startuml
+title Registered User Login - Sequence Diagram (with Backend & SSO)
+
+actor User as U
+participant "Frontend (BBP)" as FE
+participant "Backend API" as BE
+database "Database" as DB
+participant "External SSO Provider" as SSO
+
+== Initial Step ==
+
+U -> FE : Open application (BBP)
+FE -> U : Display login form\n(email/username + password)\n+ SSO option
+
+== Main Flow (Standard Login) ==
+
+U -> FE : Enter credentials and press "Login"
+FE -> BE : POST /login {email/username, password}
+
+BE -> DB : Verify credentials
+DB --> BE : Credentials valid
+
+BE --> FE : Login OK
+FE -> U : Redirect to home page
+
+== SSO Flow (Alternative Path) ==
+
+U -> FE : Click "Login with SSO"
+FE -> SSO : Redirect user to SSO provider
+SSO -> FE : Return authorization code
+FE -> BE : POST /login/sso {authorization code}
+
+BE -> SSO : Validate SSO token
+SSO --> BE : Valid token + user data
+
+BE -> DB : Check / create user linked to SSO
+DB --> BE : OK
+
+BE --> FE : Login OK
+FE -> U : Redirect to home page
+
+== Exceptions ==
+
+alt Invalid credentials
+    FE -> BE : POST /login {email/username, password}
+    BE -> DB : Verify credentials
+    DB --> BE : Invalid credentials
+    BE --> FE : Error: invalid credentials
+    FE -> U : Prompt retry or recover password
+end
+
+@enduml

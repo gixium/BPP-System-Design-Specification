@@ -1,0 +1,36 @@
+@startuml
+title Registered User sees a past Trip - Sequence Diagram
+
+actor "Registered User" as U
+participant "Frontend (BBP)" as FE
+participant "Backend API" as BE
+database "Database" as DB
+
+== View Trips List ==
+
+U -> FE : Click "Trips" tab
+FE -> BE : GET /trips
+
+BE -> DB : Retrieve user's past trips
+alt Trips found
+    DB --> BE : List of trips
+    BE --> FE : Return trips list
+    FE -> U : Show trips collection
+else No trips found (exception)
+    DB --> BE : Empty result
+    BE --> FE : No past trips
+    FE -> U : Show message: "No trips available"
+end
+
+== View Specific Trip ==
+
+U -> FE : Select a past trip
+FE -> BE : GET /trips/{tripId}
+
+BE -> DB : Retrieve trip details
+DB --> BE : Trip details
+
+BE --> FE : Return trip data
+FE -> U : Display trip information
+
+@enduml

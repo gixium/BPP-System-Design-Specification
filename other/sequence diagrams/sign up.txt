@@ -1,0 +1,43 @@
+@startuml
+title User Registration - Sequence Diagram (with Backend)
+
+actor User as U
+participant "Frontend (BBP)" as FE
+participant "Backend API" as BE
+database "Database" as DB
+
+== Main Flow ==
+
+U -> FE : Click "Sign up"
+FE -> U : Display registration form
+
+U -> FE : Fill form + press "Register"
+
+FE -> BE : POST /register {user data}
+
+BE -> DB : Check if email exists
+DB --> BE : Email available
+
+BE -> DB : Insert new user
+DB --> BE : Insert OK
+
+BE --> FE : Registration successful
+FE -> U : Confirm registration\nand redirect to login page
+
+== Exceptions ==
+
+alt Email already in use
+    FE -> BE : POST /register {user data}
+    BE -> DB : Check if email exists
+    DB --> BE : Email already used
+    BE --> FE : Error: email in use
+    FE -> U : Show error: "Email already in use"
+end
+
+alt Missing/invalid data
+    FE -> BE : POST /register {invalid data}
+    BE --> FE : Error: invalid or incomplete information
+    FE -> U : Show error: "Invalid or incomplete information"
+end
+
+@enduml
