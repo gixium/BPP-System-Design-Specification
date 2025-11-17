@@ -609,7 +609,7 @@ In addition, the systems requires some certain dependencies:
 \subsection{User Interfaces}
 
 This section describes briefly the main screens and interactions presented to the user. We also include mockups to illustrate the intended design.
-We kept Ease of use in mind, but an On boarding phase should be considered when developing the final product.
+We kept Ease of use as focus, but an "On boarding" phase should be considered when developing the final product.
 
 \textit{Look and feel can vary depending on the implementation}
 
@@ -638,7 +638,8 @@ When the application opens and no trip is currently active, the Home acts as a w
 
 Live metrics appear only during an actual ride. As soon as a trip is initiated or activated manually, the central area is replaced by the real-time metrics.
 
-The user will be prompted when it ends a trip in order to eventually update it and publish it as a bike path.  %%forse devo aggiungere tasti alla UI
+The user will be prompted when it ends a trip in order to eventually update it, by interacting with the UI, and publish it as a bike path. 
+By performing certain actions the user will be able to change road status, add potholes or remove false positives readings about them.
 
 Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
 
@@ -664,7 +665,7 @@ Navigation is provided by a persistent bottom menu that is always available. The
 \end{figure}
 
 \subsubsection{Past trip recordings}
-In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item is clickable and takes to the \texttt{past trip page}
+In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product taking to a dedicated page where the trip selected is explained in details.
 
 \begin{figure}
     \centering
@@ -674,7 +675,9 @@ In this section the user will be able to see a list of all it's past recorded tr
 \end{figure}
 
 \subsubsection{Manual path insertion}
-In this screen the user will be able to insert each street composing the path it wants to publish, alongside with the road status.
+In this screen the user will be able to add, one by one, the streets composing the path it wants to publish, alongside with the road status.
+The road status is asked when adding a new stop, the pop up is not shown in this document.
+%%uhm non saprei come mostarlo :|
 
 \begin{figure}
     \centering
@@ -684,7 +687,7 @@ In this screen the user will be able to insert each street composing the path it
 \end{figure}
 
 \subsubsection{Bike path search \& results}
-In this screen the user will be able to insert origin and destination and see the relevant bike path for its research.
+In this screen the user will be able to insert origin and destination and see the relevant bike path for its research, alongside their own overall score and ordered following the specification.
 %The system shows the first top 10 results and eventually loads more results as the user navigate the list.
 \begin{figure}
     \centering
