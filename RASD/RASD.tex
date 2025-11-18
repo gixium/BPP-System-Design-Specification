@@ -638,8 +638,9 @@ When the application opens and no trip is currently active, the Home acts as a w
 
 Live metrics appear only during an actual ride. As soon as a trip is initiated or activated manually, the central area is replaced by the real-time metrics.
 
-The user will be prompted when it ends a trip in order to eventually update it, by interacting with the UI, and publish it as a bike path. 
+The user will be prompted when it ends a trip \footnote{Only if the completed trip is safe to be shared} in order to eventually update it, by interacting with the UI, and publish it as a bike path. 
 By performing certain actions the user will be able to change road status, add potholes or remove false positives readings about them.
+
 
 Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
 
@@ -665,7 +666,8 @@ Navigation is provided by a persistent bottom menu that is always available. The
 \end{figure}
 
 \subsubsection{Past trip recordings}
-In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product taking to a dedicated page where the trip selected is explained in details.
+In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
+In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal info, modify them or delete the profile
 
 \begin{figure}
     \centering
@@ -677,6 +679,7 @@ In this section the user will be able to see a list of all it's past recorded tr
 \subsubsection{Manual path insertion}
 In this screen the user will be able to add, one by one, the streets composing the path it wants to publish, alongside with the road status.
 The road status is asked when adding a new stop, the pop up is not shown in this document.
+The user is inhibited to add certain road, not compliant with the platform policy.
 %%uhm non saprei come mostarlo :|
 
 \begin{figure}
@@ -688,10 +691,11 @@ The road status is asked when adding a new stop, the pop up is not shown in this
 
 \subsubsection{Bike path search \& results}
 In this screen the user will be able to insert origin and destination and see the relevant bike path for its research, alongside their own overall score and ordered following the specification.
-%The system shows the first top 10 results and eventually loads more results as the user navigate the list.
+The user can scroll trough all possible result, by clicking on a path card, it will be taken to an in-depth view of it. %or can be taken to the sytem installed navigation sistem (maps, G.maps or waze)
+
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{UI/search_paths.jpg}
+    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/earch_paths.png}
     \caption{Searching new paths}
     \label{fig:enter-label}
 \end{figure}
