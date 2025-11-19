@@ -4,7 +4,6 @@ class "Bike Path"{
   - creation_date: Date
   - start_point: Location
   - end_point: Location
-  - creator: RegisteredUser
   + computeScore()
   + buildCandidates()
   + selectPath()
