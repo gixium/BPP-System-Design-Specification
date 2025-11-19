@@ -609,56 +609,58 @@ In addition, the systems requires some certain dependencies:
 \subsection{User Interfaces}
 
 This section describes briefly the main screens and interactions presented to the user. We also include mockups to illustrate the intended design.
-We kept Ease of use as focus, but an "On boarding" phase should be considered when developing the final product.
+We kept ease of use as main objective while creating the design, exploiting also mobile devices touch screens capabilities.
+Even if the UI is immediate to understand, an "On boarding" phase should be considered when developing the final product.
 
 \textit{Look and feel can vary depending on the implementation}
 
-Our goal is to keep the interface simple, in this section we will concentrate on many critical interfaces, that are key to proper app ease of use and objective.
-The interfaces described in the following are: \texttt{Home with current trip}, \texttt{auto generated path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
+In this section we will concentrate on many critical interfaces, that are key to deliver a good final product.
+The interfaces described are: \texttt{Home with current trip}, \texttt{auto generated path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
 
 \subsubsection{Login \& Sign Up}
-When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths (public feature) is available even without creating an account. The screen offers standard credential fields for email/username and password, as well as an optional third-party single sign on (SSO) method.
+When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths (public feature) is available even without creating an account. The screen offers standard credential fields for email and password, as well as an optional third-party single sign on (SSO) method.
 
-On first authentication, the application shall request explicit, informed consent for background data recording (location and activity) via an ‘I understand and agree’ acknowledgment. Until consent is granted, background recording shall remain disabled.
+On first authentication the application shall request explicit consent for background data recording (location and activity) via an ‘\textit{I understand and agree}’ acknowledgment. Until consent is granted, background recording shall remain disabled.
 
 If the user chooses to sign in and the credentials are correct, the application transitions directly to the \texttt{Home} screen. If authentication fails, the page remains visible and displays a concise message that explains what went wrong (e.g., invalid credentials or a temporary network issue).
 
 \textbf{The login page will be presented again, at app startup, only to users not logged}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/log_in_UI.png}
-    \caption{Possible Log In UI}
+    \caption{Possible Login UI}
     \label{fig:enter-label}
 \end{figure}
 
 \subsubsection{Home}
-
 When the application opens and no trip is currently active, the Home acts as a welcoming starting point.
 
-Live metrics appear only during an actual ride. As soon as a trip is initiated or activated manually, the central area is replaced by the real-time metrics.
-
-The user will be prompted when it ends a trip \footnote{Only if the completed trip is safe to be shared} in order to eventually update it, by interacting with the UI, and publish it as a bike path. 
-By performing certain actions the user will be able to change road status, add potholes or remove false positives readings about them.
-
+Live metrics appear only during an actual ride. As soon as a trip is initiated or activated manually, the central area is replaced seamlessly by the real-time metrics.
 
 Navigation is provided by a persistent bottom menu that is always available. The menu contains three entries that correspond to the other core functions of the application: access to \texttt{Bike Paths}, access to \texttt{past trips}, and \texttt{Manual Path}.
 
-\begin{figure}
+During a ride the user can also send a report about the road status.
+
+The user will be prompted when it ends a trip\footnote{Only if the completed trip is safe to be shared} in order to eventually update it. By interacting with the UI it can perform certain actions, such as: change road status, add potholes or remove false positives readings about them.
+After it ends to update it can decide to publish it .
+
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/home.png}
     \caption{Home screen at start up}
     \label{fig:enter-label}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/home_metrics.png}
     \caption{Home screen during a trip}
     \label{fig:enter-label}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/fix_auto_path.png}
     \caption{Fixing an auto generated path}
@@ -669,7 +671,7 @@ Navigation is provided by a persistent bottom menu that is always available. The
 In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
 In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal info, modify them or delete the profile
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/past_trip.png}
     \caption{Past trip list}
@@ -678,11 +680,13 @@ In this screen a \textit{"profile"} button is also present; this is done in orde
 
 \subsubsection{Manual path insertion}
 In this screen the user will be able to add, one by one, the streets composing the path it wants to publish, alongside with the road status.
-The road status is asked when adding a new stop, the pop up is not shown in this document.
+The road status is asked when adding a new stop (the pop up menu is not shown in this document)
+As for the auto generated trip, it can also add potholes and obstacles by simply interacting with the UI.
+
 The user is inhibited to add certain road, not compliant with the platform policy.
 %%uhm non saprei come mostarlo :|
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/manual_path.png}
     \caption{Inserting a new Path manually}
@@ -691,9 +695,9 @@ The user is inhibited to add certain road, not compliant with the platform polic
 
 \subsubsection{Bike path search \& results}
 In this screen the user will be able to insert origin and destination and see the relevant bike path for its research, alongside their own overall score and ordered following the specification.
-The user can scroll trough all possible result, by clicking on a path card, it will be taken to an in-depth view of it. %or can be taken to the sytem installed navigation sistem (maps, G.maps or waze)
+The user can scroll trough all possible result and by clicking on a path card it will be taken to an in-depth view of selected path. %or can be taken to the sytem installed navigation sistem (maps, G.maps or waze)
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{RASD/Images/UI/earch_paths.png}
     \caption{Searching new paths}
@@ -703,9 +707,10 @@ The user can scroll trough all possible result, by clicking on a path card, it w
 
 %-----------------------------------
 
-
+\newpage
 \subsection{Hardware Interfaces}
-BBP targets Android/iOS smartphones, because people carry them during rides. Phones expose a rich set of on-board sensors and are able to compute and render the app itself. they’re ideal for continuous capture while cycling. 
+BBP targets Android/iOS smartphones, because people carry them during rides. Phones also expose a rich set of on-board sensors and are able to compute and render the app itself, so they’re ideal for continuous capture while cycling. 
+\\
 BBP relies on:
 
 \begin{itemize}
@@ -714,7 +719,7 @@ BBP relies on:
   Typical rate: $\sim$1 Hz during recording.
 
   \item \textbf{Accelerometer \& Gyroscope } \\
-  Raw motion samples to detect potholes/irregularities and support auto-pause. 
+  Raw motion samples to detect potholes/irregularities and support auto pause. 
 
   \item \textbf{Display / UI} \\
   Renders HUD metrics, maps, path review and lists. 
@@ -1328,7 +1333,7 @@ the device usable and have an acceptable response time to user actions. Therefor
 
 \subsection{Any other constraint }
 \begin{itemize}
-    \item the weather and the maps API should grant a good SLA according to the number of requests and system availability \textit{(see next)}.
+    \item the weather and the maps API should grant a good SLA according to the number of requests and system availability.
 \end{itemize}
 
 
@@ -1336,7 +1341,7 @@ the device usable and have an acceptable response time to user actions. Therefor
 \subsection{Reliability}
 Since the app execution depends strictly on user Hardware performance, we focus our attention to what we can effectively control: \textbf{the backend infrastructure}.
 
-To ensure reliability, the backend must guarantee a good fault tolerance in order to avoid service unavailability for path research and publication, for this purpose the system must also implement secure DB backups in order to guarantee the possibility to restore data even in presence of fatal failures.
+To ensure reliability, the backend must guarantee a good fault tolerance in order to avoid service unavailability for login, path research and publication, for this purpose the system must also implement secure DB backups in order to guarantee the possibility to restore data even in presence of fatal failures.
 
 \subsection{Availability}
 
@@ -1346,9 +1351,9 @@ In order to guarantee these performances the backend may rely on a distributed s
 \subsection{Security}
 \begin{itemize}
     \item \textbf{User Data Protection:}  
-    All personal information, such as user data and personal trip, must be stored securely and only accessible to the authorized users.  
+    All personal information, such as user data and personal trip, must be stored securely and only accessible to the authorized users. 
     \item \textbf{Authentication and Authorization:}  
-    Users must log in using secure credentials, and the system should ensure that each user can only access their own data or data.  
+    Users must log in using secure credentials, and the system should ensure that each user can only access their own data and public available data.  
     \item \textbf{Secure Communications:}  
     All personal user data exchanged with the backend must be encrypted to prevent interception.
 \end{itemize}
@@ -1380,16 +1385,47 @@ In order to guarantee these performances the backend may rely on a distributed s
 
 %------------------------------------------------------
 \chapter{Effort spent}
+%update when releasing!!!
 
-\chapter{References}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Task} & \textbf{Simone Controguerra} & \textbf{Matteo Delogu} & \textbf{Gianluca Di Paola} \\
+
+\hline
+Chapter 1 & 0 hours & 0 hours & 0 hours \\
+\hline
+Chapter 2 & 0 hours & 0 hours & 0 hours\\
+\hline
+Chapter 3 & 0 hours & 0 hours & 0 hours\\
+\hline
+Chapter 4 & 0 hours & 0 hours & 0 hours \\
+\hline
+\textbf{Total Effort} & 0 hours & 0 hours & 0 hours\\
+\hline
+\end{tabular}
+\caption{Effort Spent by Each Group Member}
+\label{tab:effort_spent}
+\end{table}
 
 
 %------------------------------------------------------
-\chapter*{List of Figures}
+\chapter{References}
+\begin{itemize}
+    \item Alloy official documentation: \url{https://alloytools.org/documentation.html }
+    \item UML official specification: \url{https://www.omg.org/spec/UML/}
+    \item Statistics about Italian daily bike users: 
+    \\
+    \url{www.epicentro.iss.it/passi/dati/mobilita-attiva}
+    \label{security}
+\end{itemize}
 
 
-\chapter*{List of Tables}
+%------------------------------------------------------
+\listoffigures
 
+\listoftables
 
 %------------------------------------------------------
 %------------------------------------------------------

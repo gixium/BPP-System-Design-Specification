@@ -117,20 +117,27 @@
 			\\
 			{{\color{bluepoli} \singlespacing \huge \bfseries \thesistitle \par}}	
 			\vspace{1.5cm}
-			{\color{bluepoli} \bfseries \large{\textsc{Tesi di Laurea Magistrale in\\ \course}}\par}
+			
 			\vspace{1.5 cm}
-			{\color{black} \Large {Author:} \bfseries{\name}}
+			{\color{black} \Large {Author:} \bfseries{Simone Controguerra}}
+            \\
+			\vspace{0.5cm}
+			\\
+            {\color{black} \Large {Author:} \bfseries{Matteo Delogu}}
+            \\
+			\vspace{0.5cm}
+			\\
+            {\color{black} \Large {Author:} \bfseries{Gianluca Di Paola}}
+            \\
+			\vspace{0.5cm}
+			\\
 			\end{minipage}
 			\\
 			\vspace*{\fill}
 			\\
 			\begin{minipage}{0.85\textwidth}
 			\normalsize{
-			Student ID: {\ID}
-			\\
 			Advisor: {\advisor}
-			\\
-			Co-advisors: {\coadvisor}
 			\\
 			Academic Year: {\academicyear}
 			}
