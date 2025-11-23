@@ -9,6 +9,7 @@
 % Copyright 2021 Politecnico di Milano, Italy. NC-BY
 
 \documentclass{Configuration_Files/PoliMi3i_thesis}
+\usepackage{subcaption}
 
 %------------------------------------------------------------------------------
 %	REQUIRED PACKAGES AND  CONFIGURATIONS
@@ -187,10 +188,10 @@
 \section{Purpose}
 Nowadays self-care activities have become really popular such as keeping themselves fit, in particular a lot of people raid their bike either to stay healthy or to adopt an eco-friendly transport mean. Although, streets cannot be the safest place for bikes since cars can run very fast there. The solution is to ride on designated bike paths or safe roads where cars are few and they cannot run too fast.
 
-Best Bike Paths is a service that offers an innovative solution to bikers that want to ride their bike safely. Its purpose is whether to give the opportunity to its users to record their personal trips and store them as an archive of sport activities, enriched with different kinds of related information, or to provide suggestions for safe and efficient bike paths to reach a given destination, highlighting the better ones. BBP is a service with community features, that aims to build a network of bike paths for everyone.
+Best Bike Paths is a service that offers an innovative solution to bikers that want to ride their bike safely. Its purpose is whether to give the opportunity to its users to record their personal trips and store them as an archive of sport activities, enriched with different kinds of related information, or to provide suggestions for safe and efficient bike paths to reach a given destination, highlighting the better ones. Best Bike Paths is a service with community features, that aims to build a network of bike paths for everyone.
 
 \section{Scope}
-BBP is a service where only registered users can store their bike trips and they can see the related metrics and weather conditions. Moreover, they can suggest new bike paths indicating also the status of the streets and eventual obstacles. Bike trips are private and personal, but it's possible to use the collected data during the activity to create a new bike path that will be published and available for everyone, also not registered users, that are searching for the best path to reach a desired destination. The continuous monitoring of streets' status and their obstacles, by the different registered users, allows the platform to be always updated with fresh data.
+Best Bike Paths is a service where only registered users can store their bike trips and they can see the related metrics and weather conditions. Moreover, they can suggest new bike paths indicating also the status of the streets and eventual obstacles. Bike trips are private and personal, but it's possible to use the collected data during the activity to create a new bike path that will be published and available for everyone, also not registered users, that are searching for the best path to reach a desired destination. The continuous monitoring of streets' status and their obstacles, by the different registered users, allows the platform to be always updated with fresh data.
 
 \subsection{Goals}
 \begin{itemize}
@@ -374,7 +375,7 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
     
     \subsubsection*{Scenario 10: User Account Deletion}
     
-    A user chooses to leave the service by deleting their account. The system confirms the request and removes personal data according to the terms of service, while keeping published bike paths in anonymized form. A confirmation message is shown.
+    A user chooses to leave the service by deleting their account. The system confirms the request and removes personal data according to the terms of service, while keeping published bike paths. A confirmation message is shown.
     
     \begin{itemize}\item{Phenomena covered: None specifically.}\end{itemize}
 
@@ -490,6 +491,7 @@ Enables the system to record trips either through auto-detection (GPS/IMU) or ma
     \label{fig:enter-label}
 \end{figure}
 
+\newpage
 \subsection{Trip: Review and Publishing}
 
 Allows the user to review a recorded trip summary and annotate onto it. The trip remains private unless the user explicitly chooses to publish it online, transforming it into a bike path; in such case, the system needs to validate the candidate bike path generated from the trip, therefore publishing or rejecting it.
@@ -512,6 +514,7 @@ Enhances a stored trip with weather data. The system queries the weather service
     \label{fig:enter-label}
 \end{figure}
 
+\newpage
 \subsection{Bike-Path: Manual Creation}
 
 Enables the user to draft a bike path, specifying: starting point, finishing point and an ordered sequence of traversable streets, along with their status and the presence of any irregularities. Upon submission, the system validates the streets and checks the bike path for correctness and compliance. If valid, it is approved and then published; otherwise, it is rejected with optional specified reasons.
@@ -524,7 +527,6 @@ Enables the user to draft a bike path, specifying: starting point, finishing poi
 \end{figure}
 
 \subsection{Bike-Path: Automatic Generation}
-
 Automatically generates a candidate bike path from a recorded trace obtained from GPS/IMU data processing. The user enters the review mode, confirming and/or correcting detected obstacles and street selection. Upon submission, the system validates the streets and checks the bike path for correctness and compliance. If valid, it is approved and then published; otherwise, it is rejected with optional reasons.
 
 \begin{figure}[H]
@@ -533,7 +535,7 @@ Automatically generates a candidate bike path from a recorded trace obtained fro
     \caption{Bike Path Automatic Generation: From Recorded Trace to Bike Path}
     \label{fig:enter-label}
 \end{figure}
-
+\newpage
 \subsection{External API: Street Suitability}
 
 Submits all streets to a navigation system external API for any pending publication of a bike path, based on which each street is marked valid or invalid.
@@ -568,7 +570,7 @@ Accumulates contributions (i.e., status and presence of irregularities) from use
 \end{figure}
 
 
-
+\newpage
 \section{User characteristics}
     The system recognizes two kinds of users: Unregistered User and Registered User.
 
@@ -583,7 +585,7 @@ Accumulates contributions (i.e., status and presence of irregularities) from use
         \item manage account settings (consents, profile, deletion).
     \end{enumerate}
 
-
+\newpage
 \section{Assumptions, dependencies and constraints}
 
 In order to satisfy all the goals, the system requires the following assumptions to be met:
@@ -633,6 +635,7 @@ If the user chooses to sign in and the credentials are correct, the application 
     \label{fig:enter-label}
 \end{figure}
 
+\newpage
 \subsubsection{Home}
 When the application opens and no trip is currently active, the Home acts as a welcoming starting point.
 
@@ -646,27 +649,26 @@ The user will be prompted when it ends a trip\footnote{Only if the completed tri
 After it ends to update it can decide to publish it .
 
 
-\begin{figure}[H]
+\begin{figure}[ph]
     \centering
-    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/home.png}
-    \caption{Home screen at start up}
-    \label{fig:enter-label}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/home_metrics.png}
-    \caption{Home screen during a trip}
-    \label{fig:enter-label}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/fix_auto_path.png}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{RASD/Images/UI/home.png}
+        \caption{Home screen at start up}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{RASD/Images/UI/home_metrics.png}
+        \caption{Home screen during a trip}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+    \includegraphics[width=0.7\linewidth]{RASD/Images/UI/fix_auto_path.png}
     \caption{Fixing an auto generated path}
-    \label{fig:enter-label}
+    \end{subfigure}
 \end{figure}
 
+\newpage
 \subsubsection{Past trip recordings}
 In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
 In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal info, modify them or delete the profile
@@ -734,6 +736,7 @@ BBP relies on:
   Connectivity for path search, weather, and profile sync. 
 \end{itemize}
 
+\newpage
 \subsection{Software Interfaces}
 
     The system interacts with many interfaces, categorized as internal services and external APIs, to provide its features.
@@ -769,7 +772,7 @@ BBP relies on:
 
 \end{itemize}
 
-
+\newpage
 \section{Functional Requirements}
 
 \begin{itemize}
@@ -1295,6 +1298,7 @@ Even in burst conditions where many users hit the backend simultaneously, the pl
   \item Support for at least \textbf{10\%} of the daily avereage users as concurrent requests without perceptible degradation.
 \end{itemize}
 
+\newpage
 \section{Design Constraints}
 \subsection{Standards compliance:}
 
@@ -1336,7 +1340,7 @@ the device usable and have an acceptable response time to user actions. Therefor
     \item the weather and the maps API should grant a good SLA according to the number of requests and system availability.
 \end{itemize}
 
-
+\newpage
 \section{Software system attributes}
 \subsection{Reliability}
 Since the app execution depends strictly on user Hardware performance, we focus our attention to what we can effectively control: \textbf{the backend infrastructure}.
@@ -1358,6 +1362,7 @@ In order to guarantee these performances the backend may rely on a distributed s
     All personal user data exchanged with the backend must be encrypted to prevent interception.
 \end{itemize}
 
+\newpage
 \subsection{Maintainability}
 \begin{itemize}
     \item \textbf{Modular Architecture:}
