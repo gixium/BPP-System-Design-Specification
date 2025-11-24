@@ -86,6 +86,8 @@
 \bibliographystyle{abbrvnat} % You may use a different style adapted to your field
 
 % OTHER PACKAGES
+\usepackage{minted}
+
 \usepackage{pdfpages} % To include a pdf file
 \usepackage{afterpage}
 \usepackage{lipsum} % DUMMY PACKAGE
@@ -1384,7 +1386,14 @@ In order to guarantee these performances the backend may rely on a distributed s
 
 %------------------------------------------------------
 \chapter{Formal Analysis using Alloy}
+This \texttt{Alloy} model formalizes part of the BBP app that manages reports, obstacles, streets and their aggregated status.
+It includes entities such as Street, Report, Obstacle, together with an enum for street status.
+this model allow us to automatically check that reports are always attached to a street and that each street’s status is coherent with the reports it has received.
 
+\begin{minted}[breaklines, linenos]{alloy}
+open util/boolean
+
+\end{minted}
 
 \section{Examples}
 
