@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+state "Account Lifecycle" as 1_AL {
+  [*] --> Unregistered
+  Unregistered --> Registering : startRegistration(email,pwd,ToS)
+  Registering --> Registered : verifyCredentials()
+  Registering --> Unregistered : cancel()
+
+  state Registered {
+    [*] --> ConsentPending
+    ConsentPending --> ConsentGranted : grantConsent(GPS,IMU)
+    ConsentPending --> ConsentDenied : denyConsent()
+  }
+
+  Registered --> Deleted : deleteAccount()
+}
+@enduml

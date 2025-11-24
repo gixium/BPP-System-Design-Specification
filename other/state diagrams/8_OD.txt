@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+state "Origin to Destination Query" as 8_OD {
+  [*] --> AwaitingQuery
+  AwaitingQuery --> CollectingCandidates : submitOD()
+  CollectingCandidates --> Scoring : buildCandidates() & computeScore()
+  Scoring --> ResultsReady : rank()
+  ResultsReady --> Details : selectPath()
+  ResultsReady --> Scoring : fusionUpdate() & rerank()
+}
+@enduml

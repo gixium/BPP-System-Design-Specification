@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+state "Bike Path Automatic Generation" as 6_BPA {
+  [*] --> Candidate : buildFromTrace()
+  Candidate --> Detecting : detectObstacles()
+  Detecting --> Reviewing : requestConfirmation()
+  Reviewing --> Corrected : applyEdits()
+  Corrected --> Reviewing : saveEdits()
+
+  Reviewing --> Validating : submitForPublication() & callNavService()
+  Validating --> Published : allStreetsSuitable() & publish()
+  Validating --> NeedsRevision : someStreetsUnsuitable()
+  NeedsRevision --> Reviewing : revise()
+}
+@enduml

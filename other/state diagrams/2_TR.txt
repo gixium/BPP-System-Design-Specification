@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+state "Trip Recording" as 2_TR {
+  [*] --> Idle
+  Idle --> Recording : autoDetectedCycling() || manualStart()
+  Recording --> Completing : stop()
+  Completing --> Stored : computeMetrics() & storeTrip()
+  Stored --> Synced : netAvailable() & sync()
+  Synced --> Stored : newEdits()
+  Recording --> Paused : autoPause(threshold) || pause()
+  Paused --> Recording : autoResume(threshold) || resume()
+}
+@enduml

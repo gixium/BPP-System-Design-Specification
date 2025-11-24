@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+state "Bike Path Manual Creation" as 5_BPM {
+  [*] --> Draft
+  Draft --> ValidatingInput : submit()
+  ValidatingInput --> Rejected : invalidForm() || missingFields()
+  ValidatingInput --> ConsultNavService : validForm() & callNavAPI()
+  ConsultNavService --> Approved : allStreetsSuitable()
+  ConsultNavService --> Rejected : someStreetsUnsuitable()
+  Rejected --> Draft : edit()
+  Approved --> Published : publish()
+}
+@enduml

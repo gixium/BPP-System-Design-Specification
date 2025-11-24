@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+state "Street Suitability External API" as 7_API {
+  [*] --> Preparing
+  Preparing --> ConsultingAPI : validateStreets() & callNavService()
+  ConsultingAPI --> PerStreetEvaluation : resultsReceivev()
+  state PerStreetEvaluation {
+    [*] --> Aggregating
+    Aggregating --> AllSuitable : noInvalidStreets()
+    Aggregating --> SomeUnsuitable : existsInvalidStreet()
+  }
+  AllSuitable --> ReadyForPublish
+  SomeUnsuitable --> PublicationRejected
+}
+@enduml

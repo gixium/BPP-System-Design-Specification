@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+state "Trip Weather Enrichment" as 4_WE {
+  [*] --> EnrichmentPending
+  EnrichmentPending --> Querying : callWeather()
+  Querying --> EnrichmentSuccessful : receive(data)/attachWeather()
+  Querying --> Retry : timeout() || error()
+  Retry --> Querying : backoffRetry()
+  Retry --> EnrichmentFailed : retryExhausted()
+}
+@enduml

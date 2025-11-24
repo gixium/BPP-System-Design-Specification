@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+state "Trip Review and Publication" as 3_TP {
+  [*] --> Reviewing
+  Reviewing --> Annotated : addNotes()
+  Annotated --> Reviewing : saveNotes()
+
+  Reviewing --> GeneratingPath : publishAsPath()
+  GeneratingPath --> CandidatePath : generatePathFromTrip(): Trip -> Auto-generated
+  CandidatePath --> Validating : requestValidation()
+  Validating --> PublishedPath : suitable()
+  Validating --> Rejected : unsuitable()
+  Rejected --> CandidatePath : editAndResubmit()
+}
+@enduml
