@@ -41,7 +41,7 @@ class Trip{
 entity Street{
   - name: String
   - status: STATUS
-  - obstacles: List<ObstaclesType>
+  - obstacles: List<ObstacleType>
   - speed_limit: int
   - type: TYPESTREET
   - cars_frequency: float
@@ -59,9 +59,13 @@ interface API
 class Weather
 class Navigation
 class Report{
-  - status: STATUS
-  - date: Date
+  - Status: STATUS
+  - createdAt: Date
   - street: Street
+  - Obstacles: List<ObstacleType>
+}
+class "ObstacleType"{
+  - points: int
 }
 "Bike Path" <|-- "Auto-generated"
 "Bike Path" <|-- "Manually generated"
