@@ -10,7 +10,7 @@ participant "Weather API" as WAPI
 == Trip Start ==
 
 alt Manual start
-    U -> FE : Click "Trip" → "Record"
+    U -> FE : Click "Record"
     FE -> SENS : Start trip detection
 else Automatic start
     SENS -> FE : Cycling detected
@@ -43,7 +43,7 @@ else Weather unavailable
     BE --> FE : Weather unavailable
 end
 
-== Metrics and Summary ==
+== Metrics and Summary (in background) ==
 
 FE -> FE : Compute performance metrics
 FE -> U : Show trip summary
