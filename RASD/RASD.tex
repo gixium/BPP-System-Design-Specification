@@ -796,7 +796,7 @@ BBP relies on:
 			\item \textbf{[R8]} Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.
 			\item \textbf{[R9]} Registered users shall be able to delete their profiles.
 			\item \textbf{[R10]} Registered users shall be able to monitor trip metrics.
-			\item \textbf{[R11]} Registered users shall be able to manually start a trip.
+			\item \textbf{[R11]} Registered users shall be able to record a trip.
 	    \end{itemize}
 	\item \textbf{Trip Metrics System}
 	    \begin{itemize}
@@ -808,7 +808,7 @@ BBP relies on:
 			\item \textbf{[R14]} The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).
 			\item \textbf{[R15]} The system shall be able to save manually created bike paths, allowing registered users to create bike paths in "Manual Mode".
 			\item \textbf{[R16]} The system shall support auto-pause/auto-resume when the user stops/moves again below/above thresholds.
-			\item \textbf{[R17]} The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).
+			\item \textbf{[R17]} The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).
 			\item \textbf{[R18]} The system shall prevent registered users from publishing bike paths with unallowed streets.
 	    \end{itemize}
 	\item \textbf{Bike Path Assembler}
@@ -835,7 +835,7 @@ BBP relies on:
     R7: Registered users shall be able to manually create bike paths (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes).&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
     R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
     R15: The system shall be able to save manually created bike paths, allowing registered users to create bike paths in "Manual Mode".&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
-    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
+    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     R18: The system shall prevent registered users from publishing bike paths with unallowed streets.&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
     R19: The system shall merge multiple contributions related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them.&D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
     \hline
@@ -848,7 +848,7 @@ BBP relies on:
     \hline
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
     R10: Registered users shall be able to monitor trip metrics.&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
-    R11: Registered users shall be able to manually start a trip.&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
+    R11: Registered users shall be able to record a trip.&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
     R12: The system shall record personal trips and present statistics (distance, time, average speed) and, when available, weather data associated with the trip period.&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
     R13: The system shall allow offline trip recording (street-queuing data et al) and automatically sync when connectivity is restored.&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     R16: The system shall support auto-pause/auto-resume when the user stops/moves again below/above thresholds.&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
@@ -865,7 +865,7 @@ BBP relies on:
     R7: Registered users shall be able to manually create bike paths (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes).&A1: Compliance with guidelines: All users (registered and unregistered) are expected to follow the platform’s rules and guidelines and provide accurate, up-to-date information.\\
     R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
     R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
-    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
+    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
     R19: The system shall merge multiple contributions related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them.&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     & D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
     & D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
@@ -880,7 +880,7 @@ BBP relies on:
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
     R8: Registered users shall be able to evaluate, modify (if necessary) and approve potential obstacles detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication.&A3: User’s mobile device: The user must possess a mobile device (e.g., smartphone) with integrated sensors (mandatory: GPS, accelerometer, gyroscope) capable of internet communication and application processing.\\
     R14: The system shall be able to automatically create bike paths (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope).&A4: Sensor reliability: GPS, accelerometer, gyroscope, and other necessary sensors are available, functioning correctly, and calibrated on the user's device.\\
-    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
+    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).&A5: GPS data detection: The error margin of the GPS signal shall be within acceptable thresholds to allow for the detection of the starting point (origin) and arrival point (destination).\\
     R18: The system shall prevent registered users from publishing bike paths with unallowed streets.&A6: Accelerometer and Gyroscope sensitivity: Data detection from accelerometer and gyroscope sensors must be accurate enough to correctly detect potholes and other street irregularities.\\
     &D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
     &D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
@@ -895,7 +895,7 @@ BBP relies on:
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
     R7: Registered users shall be able to manually create bike paths (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes).&A1: Compliance with guidelines: All users (registered and unregistered) are expected to follow the platform’s rules and guidelines and provide accurate, up-to-date information.\\
     R15: The system shall be able to save manually created bike paths, allowing registered users to create bike paths in "Manual Mode".&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
-    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
+    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).&D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
     R18: The system shall prevent registered users from publishing bike paths with unallowed streets.&\\
     \hline
     \caption{Goal 5 mapping table}
@@ -917,7 +917,7 @@ BBP relies on:
     \begin{longtable}{|p{0.45\linewidth}|p{0.45\linewidth}|}
     \hline
     \textbf{Requirements} & \textbf{Assumptions and Dependencies} \\ \hline
-    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes).&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
+    R17: The system shall verify the compliance of streets, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed VS road limit speed, roadway width, traffic volume, dedicated bike lanes).&D1: Reliable internet access: All users (registered and unregistered) shall have a stable internet connection to perform certain actions.\\
     R18: The system shall prevent registered users from publishing bike paths with unallowed streets.&D3: Navigation-system Service API: The navigation system service API must be correctly implemented, sufficiently available, and functioning correctly.\\
     \hline
     \caption{Goal 7 mapping table}
@@ -1127,7 +1127,7 @@ BBP relies on:
     \textbf{Entry Condition}& The user is on the home page of the application (BBP).\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
-        \item (a) The user clicks on the "Trip" button and presses on "Record" or starts cycling.
+        \item (a) The user presses on "Start Recording" or starts cycling.
         \item (b) The system detects that cycling session has started and begins with collecting GPS and IMU data from the sensors.
         \item (c) The user stops manually the recording of the trip or stops cycling.
         \item (d) The system detects that trip has been stopped.
