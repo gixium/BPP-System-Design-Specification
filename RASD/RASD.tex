@@ -188,9 +188,9 @@
 
 
 \section{Purpose}
-Nowadays self-care activities have become really popular such as keeping themselves fit, in particular a lot of people raid their bike either to stay healthy or to adopt an eco-friendly transport mean. Although, streets cannot be the safest place for bikes since cars can run very fast there. The solution is to ride on designated bike paths or safe roads where cars are few and they cannot run too fast.
+Nowadays self-care activities have become really popular such as keeping themselves fit, in particular a lot of people ride their bike either to stay healthy or to adopt an eco-friendly means of transport. However, streets are not always the safest place for bikes since cars can run very fast there. The solution is to ride on designated bike paths or safe roads where cars are few and they cannot run too fast.
 
-Best Bike Paths is a service that offers an innovative solution to bikers that want to ride their bike safely. Its purpose is whether to give the opportunity to its users to record their personal trips and store them as an archive of sport activities, enriched with different kinds of related information, or to provide suggestions for safe and efficient bike paths to reach a given destination, highlighting the better ones. Best Bike Paths is a service with community features, that aims to build a network of bike paths for everyone.
+Best Bike Paths is a service that offers an innovative solution to bikers that want to ride safely. Its purpose is whether to give the opportunity to its users to record their personal trips and store them as an archive of sport activities, enriched with different kinds of related information, or to provide suggestions for safe and efficient bike paths to reach a given destination, highlighting the better ones. Best Bike Paths is a service with community features, that aims to build a network of bike paths for everyone.
 
 \section{Scope}
 Best Bike Paths is a service where only registered users can store their bike trips and they can see the related metrics and weather conditions. Moreover, they can suggest new bike paths indicating also the status of the streets and eventual obstacles. Bike trips are private and personal, but it's possible to use the collected data during the activity to create a new bike path that will be published and available for everyone, also not registered users, that are searching for the best path to reach a desired destination. The continuous monitoring of streets' status and their obstacles, by the different registered users, allows the platform to be always updated with fresh data.
@@ -226,7 +226,7 @@ Best Bike Paths is a service where only registered users can store their bike tr
         % **WORLD ONLY (not shared)**
          \textbf{[P1]} & Any user (registered or not) follow a new bike path. & World & No\\ \hline
          \textbf{[P2]} & A registered user starts cycling. & World & No \\ \hline
-         \textbf{[P3]} & Road status (needs maintenence, optimal, mediocre, ...). & World & No \\ \hline
+         \textbf{[P3]} & Road status (needs maintenance, optimal, mediocre, ...). & World & No \\ \hline
         
         % **SHARED, WORLD-CONTROLLED**
          \textbf{[P4]} & A new user creates a profile. & World & Yes \\ \hline
@@ -246,7 +246,7 @@ Best Bike Paths is a service where only registered users can store their bike tr
         \textbf{[P16]} & The system prevents registered users from publishing bike paths with unallowed streets. & Machine & Yes \\ \hline
         \textbf{[P17]} & The system updates a bike path, inserting the new re-computed score, whenever the status of a street changes. & Machine & Yes \\ \hline
         \textbf{[P18]} & The system calls the weather-forecast service to add weather info to a trip. & Machine & Yes \\ \hline
-        \textbf{[P19]} & The system calls the navigation-system service to evaluate road safety for bikers (elements taken into account are of the likings of: proper bike track, car presence frequence, average speed of a bike, etc.). & Machine & Yes \\ \hline
+        \textbf{[P19]} & The system calls the navigation-system service to evaluate road safety for bikers (elements taken into account are of the likings of: proper bike track, car presence frequency, average speed of a bike, etc.). & Machine & Yes \\ \hline
         
         % **MACHINE ONLY (not shared)**
         \textbf{[P20]} & The system detects when the registered user is cycling and processes relevant data, to obtain performance metrics, to detect obstacles and such. & Machine & No \\ \hline
@@ -275,7 +275,7 @@ Best Bike Paths is a service where only registered users can store their bike tr
     \item \textbf{API (Application Programming Interface):} A set of protocols and tools that enable different software applications to communicate with each other.
     \item \textbf{JSON (JavaScript Object Notation):} A lightweight data-interchange format that is easily readable and writable by both humans and machines.
     \item \textbf{UI (User Interface):} The interface through which users interact with the platform, encompassing buttons, screens, and navigation elements.
-    \item \textbf{TTL (time-to-live ):} Maximum duration for a cache entry to be considered valid.
+    \item \textbf{TTL (time-to-live):} Maximum duration for a cache entry to be considered valid.
     \item \textbf{Redundancy:} The inclusion of supplementary components or systems to ensure reliability and availability in the event of a primary component failure.
     \item \textbf{Scalability:} The system's capacity to manage a growing number of users or increased load by incorporating additional resources without significant degradation in performance.
     \item \textbf{Uptime:} The period during which a system is fully operational and accessible to users without interruption.
@@ -353,7 +353,7 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
     
     \subsubsection*{Scenario 6: Bike Path Query from Origin to Destination}
     
-    A user of any kind (registered o not) specifies Origin and Destination. The system retrieves all available bike paths, ranks them by overall score and shows them to the user, ordered by efficiency.
+    A user of any kind (registered or not) specifies Origin and Destination. The system retrieves all available bike paths, ranks them by overall score and shows them to the user, ordered by efficiency.
     
     \begin{itemize}\item{Phenomena covered: P8, P15, P21.}\end{itemize}
     
@@ -619,16 +619,16 @@ Even if the UI is immediate to understand, an "On boarding" phase should be cons
 \textit{Look and feel can vary depending on the implementation}
 
 In this section we will concentrate on many critical interfaces, that are key to deliver a good final product.
-The interfaces described are: \texttt{Home with current trip}, \texttt{auto generated path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
+The interfaces described are: \texttt{Home with current trip}, \texttt{auto-generated path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
 
 \subsubsection{Login \& Sign Up}
 When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths (public feature) is available even without creating an account. The screen offers standard credential fields for email and password, as well as an optional third-party single sign on (SSO) method.
 
-On first authentication the application shall request explicit consent for background data recording (location and activity) via an ‘\textit{I understand and agree}’ acknowledgment. Until consent is granted, background recording shall remain disabled.
+On first authentication, the application shall request explicit consent for background data recording (location and activity) via an ‘\textit{I understand and agree}’ acknowledgment. Until consent is granted, background recording shall remain disabled.
 
 If the user chooses to sign in and the credentials are correct, the application transitions directly to the \texttt{Home} screen. If authentication fails, the page remains visible and displays a concise message that explains what went wrong (e.g., invalid credentials or a temporary network issue).
 
-\textbf{The login page will be presented again, at app startup, only to users not logged}
+\textbf{The login page will be presented again, at app startup, only to users not logged in}
 
 \begin{figure}[H]
     \centering
@@ -647,8 +647,8 @@ Navigation is provided by a persistent bottom menu that is always available. The
 
 During a ride the user can also send a report about the road status.
 
-The user will be prompted when it ends a trip\footnote{Only if the completed trip is safe to be shared} in order to eventually update it. By interacting with the UI it can perform certain actions, such as: change road status, add potholes or remove false positives readings about them.
-After it ends to update it can decide to publish it .
+The user will be prompted when they end a trip\footnote{Only if the completed trip is safe to be shared} in order to eventually update it. By interacting with the UI, they can perform certain actions, such as: change road status, add potholes or remove false positives readings about them.
+After finishing the update, the user can decide to publish it.
 
 
 \begin{figure}[ph]
@@ -666,14 +666,14 @@ After it ends to update it can decide to publish it .
     \begin{subfigure}{0.5\textwidth}
         \centering
     \includegraphics[width=0.7\linewidth]{RASD/Images/UI/fix_auto_path.png}
-    \caption{Fixing an auto generated path}
+    \caption{Fixing an auto-generated path}
     \end{subfigure}
 \end{figure}
 
 \newpage
 \subsubsection{Past trip recordings}
-In this section the user will be able to see a list of all it's past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
-In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal info, modify them or delete the profile
+In this section the user will be able to see a list of all their past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
+In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal information, modify it or delete the profile.
 
 \begin{figure}[H]
     \centering
@@ -683,9 +683,9 @@ In this screen a \textit{"profile"} button is also present; this is done in orde
 \end{figure}
 
 \subsubsection{Manual path insertion}
-In this screen the user will be able to add, one by one, the streets composing the path it wants to publish, alongside with the road status.
+In this screen the user will be able to add, one by one, the streets composing the path they want to publish, alongside with the road status.
 The road status is asked when adding a new stop (the pop up menu is not shown in this document)
-As for the auto generated trip, it can also add potholes and obstacles by simply interacting with the UI.
+As for the auto-generated trip, the user can also add potholes and obstacles by simply interacting with the UI.
 
 The user is inhibited to add certain road, not compliant with the platform policy.
 %%uhm non saprei come mostarlo :|
@@ -698,8 +698,8 @@ The user is inhibited to add certain road, not compliant with the platform polic
 \end{figure}
 
 \subsubsection{Bike path search \& results}
-In this screen the user will be able to insert origin and destination and see the relevant bike path for its research, alongside their own overall score and ordered following the specification.
-The user can scroll trough all possible result and by clicking on a path card it will be taken to an in-depth view of selected path. %or can be taken to the sytem installed navigation sistem (maps, G.maps or waze)
+In this screen the user will be able to insert origin and destination and see the relevant bike path for their research, alongside their own overall score and ordered following the specification.
+The user can scroll through all possible result and by clicking on a path card they will be taken to an in-depth view of selected path. %or can be taken to the sytem installed navigation sistem (maps, G.maps or waze)
 
 \begin{figure}[H]
     \centering
@@ -1098,7 +1098,7 @@ BBP relies on:
     \hline
     \textbf{Event Flow}& \begin{itemize}
         \item (a) The user clicks on "Delete your account".
-        \item (b) The systems asks the user if they are sure of the action.
+        \item (b) The system asks the user if they are sure of the action.
         \item (c) The user confirms their intentions.
         \item (d) The systems deletes all the information regarding the user.
         \item (e) The system redirects the user to the login page.
@@ -1135,10 +1135,10 @@ BBP relies on:
         \item (f) The APIs reply with the required data.
         \item (g) The system collects the weather data.
         \item (h) The system computes the performance metrics of the trip.
-        \item (i) The system shows to the user the resume of the trip.
+        \item (i) The system shows to the user the summary of the trip.
     \end{itemize}\\
     \hline
-    \textbf{Exit Condition}& The users stops the recording of the trip.\\
+    \textbf{Exit Condition}& The user stops the recording of the trip.\\
     \hline
     \textbf{Exception}& (f) Weather is not available, APIs don't reply.\\
     \hline
@@ -1192,7 +1192,7 @@ BBP relies on:
     \textbf{Entry Condition}& The user clicks on the "Add Bike Path".\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
-        \item (a) The user provides starting point, ending point, the name of the streets (sequently ordered), their status and eventual irregularities.
+        \item (a) The user provides starting point, ending point, the name of the streets (sequentially ordered), their status and eventual irregularities.
         \item (b) The system calls the Navigation APIs to check if the inserted streets are suitable to be safe Bike Paths.
         \item (c) If all streets are suitable, the Bike Path gets published.
         \item (d) If at least one street is not suitable, the system prompts the user to edit the information to make it suitable.
@@ -1200,7 +1200,7 @@ BBP relies on:
     \hline
     \textbf{Exit Condition}& The Bike Path gets published or gets rejected.\\
     \hline
-    \textbf{Exception}& (a) Invalid information are sent to the system.\\
+    \textbf{Exception}& (a) Invalid information is sent to the system.\\
     \hline
     \caption{UC6 Table}
 \end{longtable}
@@ -1221,13 +1221,13 @@ BBP relies on:
     \textbf{Entry Condition}& The user is looking at one personal trip and clicks the "publish" button.\\
     \hline
     \textbf{Event Flow}& \begin{itemize}
-        \item (a) The system processes the GPS and IMU data regarding a trip to detect streets and possible irregularities, and it show them to the user.
+        \item (a) The system processes the GPS and IMU data regarding a trip to detect streets and possible irregularities, and it shows them to the user.
         \item (b) The system shows to the user the retrieved data and prompts them to review it.
-        \item (c) The user reviews the detected irregularities and they insert the status of the detected streets.
-        \item (e) If any corrections are required, the system fixes the automatic-detected data.
+        \item (c) The user reviews the detected irregularities and they enter the status of the detected streets.
+        \item (e) If any corrections are required, the system fixes the automatically detected data.
         \item (f) The system calls the Navigation APIs to verify suitability of the streets.
         \item (g) If streets are suitable, the Bike Path gets published.
-        \item (h) If streets are not suitable, the Bike Path cannot get published.
+        \item (h) If streets are not suitable, the Bike Path cannot be published.
     \end{itemize}\\
     \hline
     \textbf{Exit Condition}& The Bike Path is published or rejected.\\
@@ -1287,16 +1287,16 @@ To ensure a usable experience, the app must:
   \item Acknowledge a user tap within \textbf{100\,ms} (visual/haptic feedback). 
   \item Complete the resulting UI action within \textbf{300\,ms}.
   \item Delivery of push notifications (e.g., ``path ready for review'') within \textbf{30\,s} of the triggering event.
-  \item When fetching paths or other data from the backend it must \textbf{cache} these data with a reasonable TTL (around 30 minutes).
+  \item When fetching paths or other data from the backend it must \textbf{cache} this data with a reasonable TTL (around 30 minutes).
 \end{itemize}
 
 \subsection{Server}
 In Italy there are approximately 22 million people who cycle at least once a week and about 3.8–4.0 million adults (between 18 and 69 years of age) ride daily for habitual trips. Assuming an initial participation of 5\% of daily cyclists, we estimate around 200,000 daily users\footnote{Data retrieved from the "Istituto Superiore di Sanità" 
 \hyperlink{https://www.epicentro.iss.it/passi/dati/mobilita-attiva}{\underline{website}}}.
 
-Even in burst conditions where many users hit the backend simultaneously, the platform must guarantee:
+Even under burst conditions in which many users hit the backend simultaneously, the platform must guarantee:
 \begin{itemize}
-  \item server responses to client data requests within \textbf{2\,s}.
+  \item server responses to client data requests must be within \textbf{2\,s}.
   \item service to at least \textbf{10\%} of the daily average users as concurrent requests without perceptible degradation.
 \end{itemize}
 
@@ -1327,8 +1327,7 @@ Even in burst conditions where many users hit the backend simultaneously, the pl
 \item the device must be able to connect to the internet communication.
 \end{itemize}
 
-BBP, also needs to run smoothly on mobile devices, needs to run in background execution while maintaining 
-the device usable and have an acceptable response time to user actions. Therefore the following requirements should be met: 
+BBP needs to run smoothly on mobile devices. Also, it needs to run in background execution while keeping the device usable and have an acceptable response time to user actions. Therefore the following requirements should be met: 
 
 \begin{itemize}
   \item \textbf{Supported OS:} Android/iOS.
@@ -1339,7 +1338,7 @@ the device usable and have an acceptable response time to user actions. Therefor
 
 \subsection{Any other constraint }
 \begin{itemize}
-    \item the weather and the maps API should grant a good SLA according to the number of requests and system availability.
+    \item Weather and Maps APIs should grant a good SLA according to the number of requests and system availability.
 \end{itemize}
 
 \newpage
@@ -1357,7 +1356,7 @@ In order to guarantee these performances the backend may rely on a distributed s
 \subsection{Security}
 \begin{itemize}
     \item \textbf{User Data Protection:}  
-    All personal information, such as user data and personal trip, must be stored securely and only accessible to the authorized users. 
+    All personal information, such as user data and personal trips, must be stored securely and only accessible to the authorized users. 
     \item \textbf{Authentication and Authorization:}  
     Users must log in using secure credentials, and the system should ensure that each user can only access their own data and public available data.  
     \item \textbf{Secure Communications:}  
@@ -1388,7 +1387,7 @@ In order to guarantee these performances the backend may rely on a distributed s
 \chapter{Formal Analysis using Alloy}
 This \texttt{Alloy} model formalizes part of the BBP app that manages reports, obstacles, streets and their aggregated status.
 It includes entities such as Street, Report, Obstacle, together with an enum for street status.
-this model allow us to automatically check that reports are always attached to a street and that each street’s status is coherent with the reports it has received.
+this model allows us to automatically check that reports are always attached to a street and that each street’s status is coherent with the reports it has received.
 
 \begin{minted}[breaklines, linenos]{alloy}
 open util/boolean
