@@ -619,7 +619,7 @@ Even if the UI is immediate to understand, an "On boarding" phase should be cons
 \textit{Look and feel can vary depending on the implementation}
 
 In this section we will concentrate on many critical interfaces, that are key to deliver a good final product.
-The interfaces described are: \texttt{Home with current trip}, \texttt{auto-generated path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
+The interfaces described are: \texttt{Home with current trip}, \texttt{path update}, \texttt{Bike Path Search \& Results}, \texttt{Manual Path Insertion} and \texttt{past trip recordings}. We also clarify the behavior of the \texttt{Login \& Sign Up} page, since sign-in is optional and therefore the user must make an explicit choice at first launch.
 
 \subsubsection{Login \& Sign Up}
 When the application opens for the first time, the user is presented with the Login page. It allows registered users to authenticate and access their set of features, it also makes clear that searching and viewing bike paths (public feature) is available even without creating an account. The screen offers standard credential fields for email and password, as well as an optional third-party single sign on (SSO) method.
@@ -647,8 +647,8 @@ Navigation is provided by a persistent bottom menu that is always available. The
 
 During a ride the user can also send a report about the road status.
 
-The user will be prompted when they end a trip\footnote{Only if the completed trip is safe to be shared} in order to eventually update it. By interacting with the UI, they can perform certain actions, such as: change road status, add potholes or remove false positives readings about them.
-After finishing the update, the user can decide to publish it.
+The user will be prompted when they end a trip in order to eventually update it. By interacting with the UI, they can perform certain actions, such as: change road status, add potholes or remove false positives readings about them.
+After finishing the update, the user can decide to publish it only if the bike path is considered safe; if a road is considered unsafe it should be marked on the UI with an error message.
 
 
 \begin{figure}[ph]
@@ -666,13 +666,15 @@ After finishing the update, the user can decide to publish it.
     \begin{subfigure}{0.5\textwidth}
         \centering
     \includegraphics[width=0.7\linewidth]{RASD/Images/UI/fix_auto_path.png}
-    \caption{Fixing an auto-generated path}
+    \caption{Revising a path}
     \end{subfigure}
 \end{figure}
 
 \newpage
 \subsubsection{Past trip recordings}
-In this section the user will be able to see a list of all their past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details.
+In this section the user will be able to see a list of all their past recorded trips ordered by date with general metrics. Each recorded trip item can be clickable in the final product, this will take the user to a dedicated page where the trip selected is explained in details with options to publish it after reviewing. \\
+As per the auto generated paths, if a trip is composed by an invalid road, it should be marked and therefore modified by the user to publish the trip as a bike path.\\
+
 In this screen a \textit{"profile"} button is also present; this is done in order to give access to the user stored personal information, modify it or delete the profile.
 
 \begin{figure}[H]
@@ -703,7 +705,7 @@ The user can scroll through all possible result and by clicking on a path card t
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/earch_paths.png}
+    \includegraphics[width=0.5\linewidth]{RASD/Images/UI/search_path.png}
     \caption{Searching new paths}
     \label{fig:enter-label}
 \end{figure}
@@ -1378,7 +1380,7 @@ In order to guarantee these performances the backend may rely on a distributed s
 
 \subsection{Portability }
 \begin{itemize}
-    \item \textbf{Portability (App):} The BBP app must run on Android and iOS and adapt to multiple screen sizes. 
+    \item \textbf{Portability (App):} The BBP app must run on Android and iOS and adapt to multiple screen size following Responsive Design paradigms. 
     
     \item \textbf{Portability (Backend):} Backend services must be easily deployable on managed platforms. Configuration should allow cloud/provider migration with minimal effort.  
 \end{itemize}
