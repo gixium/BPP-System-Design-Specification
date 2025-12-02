@@ -231,6 +231,20 @@ Polytechnic University of Milan, \textit{Specifications of the DD assignment for
 \chapter{Architectural Design}
 
 \section{Overview: High-level components and their interaction}
+The Best Bike Paths platform requires an architecture able to provide reliability, efficiency, scalability. For this reason, its architecture follows a 3-tier model divided in a Presentation Tier, an Application Tier, and a Data Tier. Each tier will be described through an overview below and in detail in the next sections.
+\subsection{Presentation Tier}
+The presentation tier is composed by a fat client which manages both the user interface and - partially - the application logic, in order to minimize the communication with the Application Server and to reduce latency for simple operations such as trip metrics' computation. It's also responsible to retrieve data from the device's sensors and of local data pre-processing such as detection of trips.
+
+It can communicate directly on with the Application Server through HTTPS and the internal APIs.
+\subsection{Application Tier}
+The application layer is just composed by the Application Server which is responsible for users' sessions management, data validation, shared business logic (such as Bike Paths' merging, publication and ranking), notification service, external APIs management.
+
+It communicates through HTTPS and internal APIs with the Fat Client and it's the only one to communicate with the Data Tier.
+\subsection{Data Tier}
+The data tier is composed by the DBMS server which responsibility is to store permanently data about the system data - such as Trips, Bike Paths, Users, Reports -, to manage both structured data and semi-structured data, to keep information integrity.
+
+It communicates just with the Application Server.
+
 
 \section{Component View}
 
