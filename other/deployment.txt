@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+title Best Bike Paths - Deployment Diagram
+
+skinparam nodeStyle rectangle
+skinparam rectangle {
+  BorderColor black
+  FontColor black
+}
+skinparam arrowColor black
+skinparam defaultTextAlignment center
+
+node "User Device" as UserDevice {
+  artifact "BBP App" as MobileApp
+}
+
+node "Firewall" as Firewall
+
+node "API Gateway" as APIGateway
+
+node "Server" as AppServer {
+  artifact "Application Service" as BackendService
+}
+
+node "Server" as DBServer {
+  database "DBMS" as Database
+}
+
+node "External Services" as External {
+  artifact "Weather API" as WeatherAPI
+  artifact "Navigation API" as NavigationAPI
+}
+
+' Client -> Backend
+UserDevice --> Firewall : HTTPS
+Firewall --> APIGateway : HTTPS
+APIGateway --> AppServer : Internal HTTP/HTTPS
+
+' Backend <-> DB
+AppServer --> DBServer : JDBC / SQL
+
+' Backend <-> External Services
+AppServer --> WeatherAPI : HTTPS
+AppServer --> NavigationAPI : HTTPS
+
+@enduml
