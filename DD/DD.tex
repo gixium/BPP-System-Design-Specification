@@ -245,12 +245,6 @@ The data tier is composed by the DBMS server which responsibility is to store pe
 
 It communicates just with the Application Server.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{DD/Images/x.png}
-    \caption{Component diagram}
-    \label{fig:enter-label}
-\end{figure}
 \newpage
 \section{Component View}
 % TODO SIMONE
@@ -291,7 +285,24 @@ This component is responsible for the communication between the Server modules a
 \newpage
 \section{Deployment View}
 % TODO SIMONE
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/deployment_diagram.png}
+    \caption{Deployment diagram}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection{User Device}
+The device must be a smartphone or a smartwatch, it shall be able to connect to Internet, download the BBP application, it shall have GPS and IMU sensors. The BBP application collects sensor data locally and it computes part of the application logic. It communicate with the Application Server through HTTPS protocol. It uses local storage temporarily for offline operations.
+\subsubsection{Firewall}
+That's necessary to guarantee security for the users and the platform itself. It represents a protection for the Application Server and the DBMS Server from external attacks. Only safe HTTPS messages can reach the backend.
+\subsubsection{API Gateway}
+It represent the only entry point for the Client requests. It performs TLS termination and it routes REST APIs calls to the Application Server. It hides the internal architecture from any external exposures.
+\subsubsection{Application Server}
+This is the core part of the application, where most of the logic resides. It communicates with the Client through HTTPS protocol and RESTful APIs. It interacts with the DBMS when data is needed to be retrieved.
+\subsubsection{DBMS Server}
+It contains all the data used by the application, such as Trips and Bike Paths. The DBMS uses a relational database system based on PostgreSQL. It maintains the data consistency.
+\subsubsection{External Services}
+The platform relies on two external services, one for enrich Trips with Weather Data (if available), and one to check the suitability for Streets when any user wants to publish a Bike Path. Both the services are provided by external APIs.
 
 \section{Runtime View}
 % TODO SIMONE
