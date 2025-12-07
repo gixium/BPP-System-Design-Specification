@@ -231,14 +231,73 @@ Polytechnic University of Milan, \textit{Specifications of the DD assignment for
 \chapter{Architectural Design}
 
 \section{Overview: High-level components and their interaction}
+The Best Bike Paths platform requires an architecture able to provide reliability, efficiency, scalability. For this reason, its architecture follows a 3-tier model divided in a Presentation Tier, an Application Tier, and a Data Tier. Each tier will be described through an overview below and in detail in the next sections.
+\subsection{Presentation Tier}
+The presentation tier is composed by a fat client which manages both the user interface and - partially - the application logic, in order to minimize the communication with the Application Server and to reduce latency for simple operations such as trip metrics' computation. It's also responsible to retrieve data from the device's sensors and of local data pre-processing such as detection of trips.
 
+It can communicate directly on with the Application Server through HTTPS and the internal APIs.
+\subsection{Application Tier}
+The application layer is just composed by the Application Server which is responsible for users' sessions management, data validation, shared business logic (such as Bike Paths' merging, publication and ranking), notification service, external APIs management.
+
+It communicates through HTTPS and internal APIs with the Fat Client and it's the only one to communicate with the Data Tier.
+\subsection{Data Tier}
+The data tier is composed by the DBMS server which responsibility is to store permanently data about the system data - such as Trips, Bike Paths, Users, Reports -, to manage both structured data and semi-structured data, to keep information integrity.
+
+It communicates just with the Application Server.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/x.png}
+    \caption{Component diagram}
+    \label{fig:enter-label}
+\end{figure}
+\newpage
 \section{Component View}
-
+% TODO SIMONE
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/component_diagram.png}
+    \caption{Component diagram}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Client}
+\subsubsection{Sensor Manager}
+This component is responsible for the communication with the device sensors and for the collection of GPS and IMU data. It directly communicates with the other modules that are in the Client layer.
+\subsubsection{Trip Detector}
+This component is responsible for the automatic detection of Trips based on sensor data.
+\subsubsection{Metrics Engine}
+This component is responsible for the computation of Trip metrics. It receives data from the Sensor Manager and from the Trip Detector modules.
+\subsubsection{Offline Sync Module}
+This component is responsible for the offline re-synchronization of the on-going Trip, when Internet connection is not available.
+\subsubsection{Connector Module}
+This component is responsible for the communication between Client and Server, it provides a REST interface.
+\subsection{Application Server}
+\subsubsection{User Manager}
+This component is responsible for the management of users' profile, credentials and permissions.
+\subsubsection{Trip Manager}
+This component is responsible for the storing and the enrichment of Trips. It interacts with the External API Manager module to add weather information to the Trip, if available.
+\subsubsection{Bike Path Manager}
+This component is responsible for the creation, validation and publication of Bike Paths. It interacts with the External API Manager module in order to check safety of the Bike Paths. Also, it interacts with Street Manager module so that the component can propagate changes in existing Bike Paths.
+\subsubsection{Path Recommendation Engine}
+This component is responsible for the discovery, retrieval, scoring and ranking of Bike Paths when a user queries the system for a Bike Path to reach a destination. So, Bike Paths are retrieved, their score gets computed and they get ranked according to said score.
+\subsubsection{Report Manager}
+This component is responsible for receiving reports from the users and to retrieve data about Streets' conditions.
+\subsubsection{Street Manager}
+This component is responsible to update Streets' status according to new received reports. It interacts with the Report Manager module.
+\subsubsection{External API Manager}
+This component is responsible to call external APIs such as the Weather and Navigation ones, in order to enrich or validate data.
+\subsubsection{Data Access Module}
+This component is responsible for the communication between the Server modules and the Database.
+\newpage
 \section{Deployment View}
+% TODO SIMONE
+
 
 \section{Runtime View}
+% TODO SIMONE
 
 \section{Component Interfaces}
+% TODO 
 
 \section{Selected Architectural Styles and Patterns}
 \textit{TODO: Gianluca}

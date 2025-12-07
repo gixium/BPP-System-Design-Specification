@@ -469,7 +469,7 @@ Polytechnic University of Milan, \textit{Specifications of the RASD assignment f
     \caption{Class Diagram}
     \label{fig:enter-label}
 \end{figure}
-
+\newpage
 \section{Product functions}
 \subsection{Account Lifecycle}
 
@@ -1385,12 +1385,72 @@ In order to guarantee these performances the backend may rely on a distributed s
 
 %------------------------------------------------------
 \chapter{Formal Analysis using Alloy}
-This \texttt{Alloy} model formalizes part of the BBP app that manages reports, obstacles, streets and their aggregated status.
-It includes entities such as Street, Report, Obstacle, together with an enum for street status.
-this model allows us to automatically check that reports are always attached to a street and that each street’s status is coherent with the reports it has received.
+This \texttt{Alloy} model formalizes the part of the BBP app that manages streets, reports, obstacles, and their aggregated status. It models entities such as \texttt{Street}, \texttt{Report}, and \texttt{Obstacle}, together with an enumeration for street conditions. In this way, we can automatically verify one of the core features of the app: each street’s status remains consistent with the reports it receives, with particular attention to both the freshness of the data and the majority rule among conflicting reports.
 
 \begin{minted}[breaklines, linenos]{alloy}
-open util/boolean
+open util/ordering[Time]  // total order on Time, used for freshness
+abstract sig User {}                 // generic user (cannot be instantiated directly)
+sig RegisteredUser extends User {}   // registered user (can publish and create reports)
+
+sig GeoPoint {}                      // geographic point (start/end of BikePath)
+sig Time {}                          // time instant (totally ordered)
+
+// stret condition type, with associated penalty points
+abstract sig Status { points: one Int }
+one sig Optimal, Mediocre, NeedsMaintenance extends Status {}
+
+// Obstacle type, each one with its own penalty
+abstract sig ObstacleType { points: one Int }
+one sig Pothole, Bump, GenericObstacle extends ObstacleType {}
+
+sig Street {
+  status: one Status    // current, merged status of the street
+}
+
+// Bike path as formally defined in the RASD
+sig BikePath {
+  start, end: one GeoPoint,
+  streets: some Street,
+  createdBy: one RegisteredUser,
+  score: one Int
+}
+
+// A standalone, recorded trip (always private) that can optionally be used to generate a BikePath (basePath)
+sig Trip {
+  owner: one RegisteredUser,
+  from, to: one GeoPoint,
+  basePath: lone BikePath     // if present: BikePath obtained from this Trip
+}
+
+// A report created by a registered user while travelling a BikePath:
+//   - relative to a specific BikePath and Street (max one Report per Street)
+//   - timestamped with Time
+//   - carries an observed Status and a (possibly empty) set of Obstacles
+sig Report {
+  by: one RegisteredUser, //!!! - dobbiamo metterlo per forzza?
+  path: one BikePath, 
+  street: one Street,
+  createdAt: one Time,
+  rStatus: one Status,
+  rObstacles: set ObstacleType
+}
+
+// ---------------------------------------------------------------
+// BASIC FACTS FROM SPECIFICATIONS
+// ---------------------------------------------------------------
+
+// Higher points = worse, for the system
+fact PointValues {
+  Optimal.points = 0
+  Mediocre.points  = 1
+  NeedsMaintenance.points = 2
+
+  Pothole.points = 3
+  Bump.points = 2
+  GenericObstacle.points = 1
+}
+
+
 
 \end{minted}
 
