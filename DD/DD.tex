@@ -303,10 +303,81 @@ This is the core part of the application, where most of the logic resides. It co
 It contains all the data used by the application, such as Trips and Bike Paths. The DBMS uses a relational database system based on PostgreSQL. It maintains the data consistency.
 \subsubsection{External Services}
 The platform relies on two external services, one for enrich Trips with Weather Data (if available), and one to check the suitability for Streets when any user wants to publish a Bike Path. Both the services are provided by external APIs.
-
+\newpage
 \section{Runtime View}
 % TODO SIMONE
+\subsection{User registration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/signup.png}
+    \caption{Sequence Diagram: User registration}
+    \label{fig:enter-label}
+\end{figure}
 
+\newpage
+\subsection{Registered User login}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/login.png}
+    \caption{Sequence Diagram: Registered User login}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Registered User deletion}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/deletion.png}
+    \caption{Sequence Diagram: Registered User deletion}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Registered User records a Trip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/trip.png}
+    \caption{Sequence Diagram: Registered User records a Trip}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Registered User sees a past Trip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/past_trip.png}
+    \caption{Sequence Diagram: Registered User sees a past Trip}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Registered User inserts a Bike Path in Manual Mode}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/manual.png}
+    \caption{Sequence Diagram: Registered User inserts a Bike Path in Manual Mode}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Registered User inserts a Bike Path in Automatic Mode}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/automatic.png}
+    \caption{Sequence Diagram: Registered User inserts a Bike Path in Automatic Mode}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{User searches a Bike Path}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DD/Images/sequence/search.png}
+    \caption{Sequence Diagram: User searches a Bike Path}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
 \section{Component Interfaces}
 % TODO 
 
