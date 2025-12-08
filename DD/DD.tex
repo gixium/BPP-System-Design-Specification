@@ -313,7 +313,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: User registration}
     \label{fig:enter-label}
 \end{figure}
-
+The user interacts with the Registration page of BBP app and fills the forms. The data gets forwarded to the Connector Module of the Clients in order to send it to the Server and get managed by the User Manager module. Then, data is checked and added on the Database through the Data Access Module.
 \newpage
 \subsection{Registered User login}
 \begin{figure}[H]
@@ -322,7 +322,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User login}
     \label{fig:enter-label}
 \end{figure}
-
+The user interacts with the Login page of BBP app and fills the forms. The data gets forwarded to the Connector Module of the Clients in order to send it to the Server and get managed by the User Manager module. Then, data is checked on the Database through the Data Access Module. The outcome is then showed to the user.
 \newpage
 \subsection{Registered User deletion}
 \begin{figure}[H]
@@ -331,7 +331,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User deletion}
     \label{fig:enter-label}
 \end{figure}
-
+The user interacts with the Settings page of BBP app to delete their account. Messages are forwarded to the Connector Module of the Client and they get to the User Manager module of the Server. Database operations are made through the Data Access Module to delete the information about the user requesting the deletion of their account.
 \newpage
 \subsection{Registered User records a Trip}
 \begin{figure}[H]
@@ -340,7 +340,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User records a Trip}
     \label{fig:enter-label}
 \end{figure}
-
+The user is starting the recording of a trip. The user can start manually the recording or the Trip Detector module of the Client can automatically detect it. During the recording metrics are computed by the Metrics Engine module of the Client. Once the recording gets stopped, the final metrics are computed and the Trip is stored into the Database, through the forwarding to the Connector Module and to the Data Access Module. External API for Weather is called by the Manager module of the Server to enrich data.
 \newpage
 \subsection{Registered User sees a past Trip}
 \begin{figure}[H]
@@ -349,7 +349,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User sees a past Trip}
     \label{fig:enter-label}
 \end{figure}
-
+The user interacts with the BBP app in order to see the past Trips. The Connector Module of the Client sends a request to the Trip Manager of the Server that forwards it to the Database through the Data Access Module. The collection of that user's past Trips are returned and if the user selects one of them the same iteration repeats to ask to the Database the details about that Trip.
 \newpage
 \subsection{Registered User inserts a Bike Path in Manual Mode}
 \begin{figure}[H]
@@ -358,7 +358,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User inserts a Bike Path in Manual Mode}
     \label{fig:enter-label}
 \end{figure}
-
+The user wants to publish a Bike Path inserting manually the Streets that compose the Bike Path. The data is passed from the Client to the Server through the Connector Module. On the server, the Bike Path Manager, the Report Manager and the Street Manager work to manage the status of the Streets and store the data into the Database. Meanwhile, the suitability of the Streets is also checked through the External Navitation API called by the External API Manager module of the Server.
 \newpage
 \subsection{Registered User inserts a Bike Path in Automatic Mode}
 \begin{figure}[H]
@@ -367,7 +367,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: Registered User inserts a Bike Path in Automatic Mode}
     \label{fig:enter-label}
 \end{figure}
-
+The user wants to publish a Bike Path converting data from a previous Trip. So data gets collected by the Trip Manager and forwarded to the Server by the Connector Module. Before that, the user reviews the generated Bike Path and the report gets sent to the Server. Streets are checked for suitability through the External API Manager, and the Streets' status get updated trough the Report and Street Managers. Data is then stored into the Database through the Data Access Module.
 \newpage
 \subsection{User searches a Bike Path}
 \begin{figure}[H]
@@ -376,7 +376,7 @@ The platform relies on two external services, one for enrich Trips with Weather 
     \caption{Sequence Diagram: User searches a Bike Path}
     \label{fig:enter-label}
 \end{figure}
-
+The user searches for a Bike Path to reach a given destination from a given origin. The request gets forwarded to the Server through the Connector Module. Here, the Path Recommendation Engine retrieves possible candidates from the Database through the Data Access Module. Then the module computes the score of the retrieved Bike Paths and it rank   to show them back to the user.
 \newpage
 \section{Component Interfaces}
 % TODO 
