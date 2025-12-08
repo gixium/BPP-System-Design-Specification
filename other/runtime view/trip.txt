@@ -8,43 +8,50 @@ participant "Metrics Engine" as ME
 participant "Connector Module" as CM
 participant "Trip Manager" as TM
 participant "External API Manager" as EAM
-participant "Weather API" as WAPI
+participant "Data Access Module" as DAM
 database DB
+participant "Weather API" as WAPI
 
+== Start ==
 User -> UI: Start Recording
 UI -> TD: startTrip()
 
 == Continuous Trip ==
 loop while cycling
     TD -> SM: readSensorData()
-    SM --> TD: samples (GPS+IMU)
+    SM --> TD: GPS+IMU samples
 
     TD -> TD: detectCycling()
-    TD --> TD: trip state = active
 
     TD -> ME: updateMetrics(samples)
     ME -> ME: compute incremental metrics
     ME --> UI: push live metrics
 end
 
-== Trip Termination ==
+== Stop ==
 User -> UI: Stop Recording
 UI -> TD: stopTrip()
+
 TD -> ME: finalizeMetrics()
 ME --> UI: final metrics
 
 == Store Trip ==
-TD -> CM: POST /trip(data,metrics)
-CM -> TM: storeTrip()
+TD -> CM: POST /trip(data, metrics)
+CM -> TM: storeTrip(data, metrics)
 
-== Enrich with Weather ==
-TM -> EAM: getWeatherData(time,location)
+== Weather Enrichment ==
+TM -> EAM: getWeatherData(time, location)
 EAM -> WAPI: GET weather
-WAPI --> EAM: weather data
+WAPI --> EAM: weather payload
+EAM --> TM: weather data
 
-TM -> DB: INSERT trip+metrics+weather
-DB --> TM: ok
+== Persistence ==
+TM -> DAM: saveTrip(data, metrics, weather)
+DAM -> DB: INSERT trip record
+DB --> DAM: ok
+DAM --> TM: ok
 
+== End ==
 TM --> CM: success
 CM --> UI: Show trip summary
 
