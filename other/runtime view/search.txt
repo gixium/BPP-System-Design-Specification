@@ -1,0 +1,23 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Connector Module" as CM
+participant "Path Recommendation Engine" as PRE
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Search Bike Paths
+UI -> CM: GET /paths?origin&destination
+CM -> PRE: findPaths(origin,destination)
+
+PRE -> DAM: getCandidatePaths()
+DAM -> DB: SELECT paths...
+DB --> DAM: result
+DAM --> PRE: candidate paths
+
+PRE -> PRE: computeScores()
+PRE --> CM: ranked paths
+CM --> UI: Show ranked results
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Connector Module" as CM
+participant "User Manager" as UM
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Open App
+User -> UI: Click "Sign Up"
+UI -> User: Show registration form
+User -> UI: Submit Registration Data
+UI -> CM: POST /register (user data)
+
+CM -> UM: registerUser(data)
+UM -> DAM: checkEmailExists(email)
+DAM -> DB: SELECT email
+DB --> DAM: result
+DAM --> UM: exists / not exists
+
+alt Email already used
+    UM --> CM: error "Email exists"
+    CM --> UI: Show error message
+    return
+else Valid data
+    UM -> DAM: insertUser(data)
+    DAM -> DB: INSERT user
+    DB --> DAM: success
+    DAM --> UM: success
+end
+
+UM --> CM: registration success
+CM --> UI: Show success and redirect
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Connector Module" as CM
+participant "Bike Path Manager" as BPM
+participant "Report Manager" as RM
+participant "Street Manager" as SM
+participant "External API Manager" as EAM
+participant "Navigation API" as NAPI
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Add Bike Path (manual)
+UI -> CM: POST /bikepath/manual(data)
+
+CM -> BPM: createManualPath(data)
+
+== Process user-provided street status ==
+BPM -> RM: processStreetData(data.streets)
+RM -> SM: updateStreetStatus(streets)
+SM -> DAM: updateStreet(streets)
+DAM -> DB: UPDATE streets
+DB --> DAM: ok
+DAM --> SM: ok
+SM --> RM: ok
+RM --> BPM: street processed
+
+== Check suitability ==
+BPM -> EAM: checkStreets(data)
+EAM -> NAPI: GET /validateStreets
+NAPI --> EAM: response
+
+alt All suitable
+    BPM -> DAM: storeBikePath(data)
+    DAM -> DB: INSERT bike path
+    DB --> DAM: ok
+    BPM --> CM: publish success
+    CM --> UI: Show success
+else Not suitable
+    BPM --> CM: return error
+    CM --> UI: Ask user to edit
+end
+
+@enduml

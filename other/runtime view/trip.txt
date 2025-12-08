@@ -1,0 +1,51 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Sensor Manager" as SM
+participant "Trip Detector" as TD
+participant "Metrics Engine" as ME
+participant "Connector Module" as CM
+participant "Trip Manager" as TM
+participant "External API Manager" as EAM
+participant "Weather API" as WAPI
+database DB
+
+User -> UI: Start Recording
+UI -> TD: startTrip()
+
+== Continuous Trip ==
+loop while cycling
+    TD -> SM: readSensorData()
+    SM --> TD: samples (GPS+IMU)
+
+    TD -> TD: detectCycling()
+    TD --> TD: trip state = active
+
+    TD -> ME: updateMetrics(samples)
+    ME -> ME: compute incremental metrics
+    ME --> UI: push live metrics
+end
+
+== Trip Termination ==
+User -> UI: Stop Recording
+UI -> TD: stopTrip()
+TD -> ME: finalizeMetrics()
+ME --> UI: final metrics
+
+== Store Trip ==
+TD -> CM: POST /trip(data,metrics)
+CM -> TM: storeTrip()
+
+== Enrich with Weather ==
+TM -> EAM: getWeatherData(time,location)
+EAM -> WAPI: GET weather
+WAPI --> EAM: weather data
+
+TM -> DB: INSERT trip+metrics+weather
+DB --> TM: ok
+
+TM --> CM: success
+CM --> UI: Show trip summary
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Trip Manager" as TM
+participant "Connector Module" as CM
+participant "Bike Path Manager" as BPM
+participant "Report Manager" as RM
+participant "Street Manager" as SM
+participant "External API Manager" as EAM
+participant "Navigation API" as NAPI
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Publish Trip
+
+== Automatic detection ==
+UI -> TM: requestTripData()
+TM --> UI: detected streets & irregularities
+
+User -> UI: review + edit street status
+UI -> CM: POST /bikepath/auto(reviewed data)
+
+CM -> BPM: createAutoPath(data)
+
+== Process user review as reports ==
+BPM -> RM: processReview(data.streets)
+RM -> SM: updateStreetStatus(streets)
+SM -> DAM: updateStreet(streets)
+DAM -> DB: UPDATE
+DB --> DAM: ok
+DAM --> SM: ok
+SM --> RM: ok
+RM --> BPM: street processed
+
+== Suitability check ==
+BPM -> EAM: checkStreets(data)
+EAM -> NAPI: GET /validateStreets
+NAPI --> EAM: response
+
+alt Suitable
+    BPM -> DAM: storeBikePath(data)
+    DAM -> DB: INSERT bike path
+    DB --> DAM: ok
+    BPM --> CM: publish success
+    CM --> UI: Show published
+else Not suitable
+    BPM --> CM: reject
+    CM --> UI: show rejection
+end
+
+@enduml

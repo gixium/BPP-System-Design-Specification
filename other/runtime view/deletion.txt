@@ -1,0 +1,26 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Connector Module" as CM
+participant "User Manager" as UM
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Settings Page
+User -> UI: Click "Delete Account"
+UI -> User: Confirm deletion
+User -> UI: Confirm
+
+UI -> CM: DELETE /account
+CM -> UM: deleteAccount(userId)
+
+UM -> DAM: deleteUser(userId)
+DAM -> DB: DELETE FROM users
+DB --> DAM: success
+DAM --> UM: success
+
+UM --> CM: deletion success
+CM --> UI: Redirect to login
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+actor User
+
+participant App as UI
+participant "Connector Module" as CM
+participant "User Manager" as UM
+participant "Data Access Module" as DAM
+database DB
+
+User -> UI: Open Login Page
+UI -> User: Ask credentials
+User -> UI: Fill credentials
+UI -> CM: POST /login
+
+CM -> UM: authenticate(credentials)
+UM -> DAM: getUser(email)
+DAM -> DB: SELECT user by email
+DB --> DAM: user record
+DAM --> UM: user record
+
+UM -> UM: verify password
+
+alt Wrong Password
+    UM --> CM: error "Invalid credentials"
+    CM --> UI: Show error
+else Correct Password
+    UM -> CM: Auth Token
+    CM --> UI: Redirect to Home
+end
+
+@enduml
