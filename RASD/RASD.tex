@@ -1434,7 +1434,7 @@ sig Trip {
 //   - timestamped with Time
 //   - carries an observed Status and a (possibly empty) set of Obstacles
 sig Report {
-  by: one RegisteredUser, //!!! - dobbiamo metterlo per forza?
+  by: one RegisteredUser, 
   path: one BikePath, 
   street: one Street,
   createdAt: one Time,
