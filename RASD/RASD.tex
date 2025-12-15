@@ -1390,6 +1390,12 @@ This \texttt{Alloy} model formalizes the part of the BBP app that manages street
 \begin{minted}[breaklines, linenos]{alloy}
 
 open util/ordering[Time]  // total order on Time, used for freshness
+
+// ---------------------------------------------------------------
+// SIGNATURES
+// ---------------------------------------------------------------
+
+
 abstract sig User {}                 // generic user (cannot be instantiated directly)
 sig RegisteredUser extends User {}   // registered user (can publish and create reports)
 
@@ -1428,7 +1434,7 @@ sig Trip {
 //   - timestamped with Time
 //   - carries an observed Status and a (possibly empty) set of Obstacles
 sig Report {
-  by: one RegisteredUser, //!!! - dobbiamo metterlo per forzza?
+  by: one RegisteredUser, //!!! - dobbiamo metterlo per forza?
   path: one BikePath, 
   street: one Street,
   createdAt: one Time,
