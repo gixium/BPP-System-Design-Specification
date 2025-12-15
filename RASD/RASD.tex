@@ -1388,6 +1388,7 @@ In order to guarantee these performances the backend may rely on a distributed s
 This \texttt{Alloy} model formalizes the part of the BBP app that manages streets, reports, obstacles, and their aggregated status. It models entities such as \texttt{Street}, \texttt{Report}, and \texttt{Obstacle}, together with an enumeration for street conditions. In this way, we can automatically verify one of the core features of the app: each street’s status remains consistent with the reports it receives, with particular attention to both the freshness of the data and the majority rule among conflicting reports.
 
 \begin{minted}[breaklines, linenos]{alloy}
+
 open util/ordering[Time]  // total order on Time, used for freshness
 abstract sig User {}                 // generic user (cannot be instantiated directly)
 sig RegisteredUser extends User {}   // registered user (can publish and create reports)
@@ -1449,6 +1450,121 @@ fact PointValues {
   Bump.points = 2
   GenericObstacle.points = 1
 }
+
+// Report consistency: every report for a BikePath refers to a Street that actually belongs to that path
+fact ReportsConsistentWithPaths {
+  all r: Report | r.street in r.path.streets
+}
+
+// Forbid circular BikePaths (start == end).
+fact NoCircularPaths {
+  all bp: BikePath | bp.start != bp.end
+}
+
+// ---------------------------------------------------------------
+// HELPER FUNCTIONS
+// ---------------------------------------------------------------
+
+// Get tutti i report di una certa Street (indipendentemente dalla BikePath)
+fun reportsForStreet[s: Street]: set Report {
+  { r: Report | r.street = s }
+}
+
+// Get the most recent time among all reports for a street
+fun mostRecentTime[s: Street]: set Time {
+  { t: reportsForStreet[s].createdAt |
+    no t2: reportsForStreet[s].createdAt | t in t2.^next
+  }
+}
+
+// Get all reports with maximal freshness (latest time, aka more recent) for a street
+fun mostRecentReports[s: Street]: set Report {
+  { r: reportsForStreet[s] | r.createdAt in mostRecentTime[s] }
+}
+
+// Count number of reports with a specific status among a set of reports
+fun countReportsWithStatus[rs: set Report, st: Status]: Int {
+  # { r: rs | r.rStatus = st }
+}
+
+/ ---------------------------------------------------------------
+// MERGING INFO FOR STREET (freshness + confirmations, RASD Req19)
+// Core logic 
+// ---------------------------------------------------------------
+
+// Select status for a street in a way that is majority-based and freshness-aware
+//  1. if no reports, keep existing status (the default initial value)
+//  2. if exactly one most-recent report, use such status
+//  3. if several most-recent reports, choose the status with highest count
+//      - in case of tie on (3), select among tied ones the one with minimal points ("better" status)
+
+fun computedStatus[s: Street]: Status {
+  let rs = mostRecentReports[s] |
+    (no rs) => s.status
+    else (one rs) => (rs.rStatus)
+    else {
+      let optCnt = countReportsWithStatus[rs, Optimal] |
+      let medCnt = countReportsWithStatus[rs, Mediocre] |
+      let nmCnt  = countReportsWithStatus[rs, NeedsMaintenance] |
+
+      // strict majority cases
+      (optCnt > medCnt and optCnt > nmCnt) => Optimal
+      else (medCnt > optCnt and medCnt > nmCnt) => Mediocre
+      else (nmCnt > optCnt and nmCnt > medCnt) => NeedsMaintenance
+
+      // tie cases: choose among the tied statuses the one with best (lowest) points
+      else {
+        // tie Optimal–Mediocre
+        (optCnt = medCnt and optCnt > nmCnt) =>
+          (Optimal.points <= Mediocre.points) => Optimal else Mediocre
+
+        // tie Optimal–NeedsMaintenance
+        else (optCnt = nmCnt and optCnt > medCnt) =>
+          (Optimal.points <= NeedsMaintenance.points) => Optimal else NeedsMaintenance
+
+        // tie Mediocre–NeedsMaintenance
+        else (medCnt = nmCnt and medCnt > optCnt) =>
+          (Mediocre.points <= NeedsMaintenance.points) => Mediocre else NeedsMaintenance
+
+        // all equal (optCnt = medCnt = nmCnt): choose globally best status
+        else
+          (Optimal.points <= Mediocre.points and Optimal.points <= NeedsMaintenance.points)
+            => Optimal
+          else (Mediocre.points <= NeedsMaintenance.points)
+            => Mediocre
+          else
+            NeedsMaintenance
+      }
+    }
+}
+
+// This models the "update-after-merge" behavior: street status must reflect the computed status from reports
+fact StatusUpdatedByReports {
+  all s: Street |
+    some reportsForStreet[s] implies s.status = computedStatus[s]
+}
+
+/ ---------------------------------------------------------------
+// ASSERTIONS 
+// ---------------------------------------------------------------
+
+// Freshness
+assert FreshnessRespected {
+  all s: Street |
+    some reportsForStreet[s] implies	// if there are reports for a street
+      computedStatus[s] in mostRecentReports[s].rStatus 		// the computed status is the one in the most recent reports
+}
+
+// Score is always non-negative (since all points are non-negative)
+assert NonNegativeScore {
+  all bp: BikePath | bp.score >= 0
+}
+
+// All BikePaths are made only of Street elements and contain at least one Street 
+assert ValidPublish {
+  all bp: BikePath | some bp.streets and bp.streets in Street
+}
+
 
 
 
