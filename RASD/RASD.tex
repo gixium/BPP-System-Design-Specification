@@ -1577,6 +1577,55 @@ assert ValidPublish {
 \end{minted}
 
 \section{Examples}
+\subsubsection*{General Testing}
+    First thing first, a general test was performed in order to check if the model works properly. As shown in the diagram, all entities are correctly linked and all requirements are met. 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{RASD/Images/alloy_IMG/D0_all.png}
+        \caption{General Testing}
+        \label{fig:enter-label}
+    \end{figure}
+
+\subsection{Single report determines street status and path score}
+    Here it was verified that it is a single report that determines street status and path score, by executing the following command:
+    \begin{minted}[breaklines]{alloy}
+    run singleReportUpdates for 4
+    \end{minted}
+    Which resulted in:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{RASD/Images/alloy_IMG/res_D1.png}
+        \caption{Demo 1 - Result}
+        \label{fig:enter-label}
+    \end{figure}
+    And visually determined:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{RASD/Images/alloy_IMG/D1_singleReportUpdates.png}
+        \caption{Demo 1 - Tree}
+        \label{fig:enter-label}
+    \end{figure}
+
+\subsection{Freshness wins over older majority of reports}
+    Here it was verified that freshness determines the report whose infomation is taken into consideration, by executing the following command:
+    \begin{minted}[breaklines]{alloy}
+    run singleReportUpdates for 4
+    \end{minted}
+    Which resulted in:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{RASD/Images/alloy_IMG/res_D2.png}
+        \caption{Demo 1 - Result}
+        \label{fig:enter-label}
+    \end{figure}
+    And visually determined:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{RASD/Images/alloy_IMG/D2_freshnessWins.png}
+        \caption{Demo 1 - Tree}
+        \label{fig:enter-label}
+    \end{figure}
+
 
 %------------------------------------------------------
 \chapter{Effort spent}
