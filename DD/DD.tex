@@ -459,28 +459,100 @@ The priority is chosen according to the essentiality of the module and to the in
 The development process of the individual modules is structured following an order which allows the other components to be integrated as soon as possible, so that an early testing process will be guaranteed.
 \subsection{DBMS and Data Access Module}
 The first step is to implement the DBMS and the module responsible for the communication between the server and the database, since all the components interact with it and depend on it. After its implementation, the database shall be tested in order to guarantee reliability. If so, integration of other components can happen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/data_access.png}
+    \caption{Implementation step: 1}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{User Manager}
 Once the dataset has been implemented and tested, the platform can't work without users and their interactions, so the next component to implement and to test is the User Manager. It will once be tested individually and then integrated with the DBMS.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/user_manager.png}
+    \caption{Implementation step: 2}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Trip Manager and Bike Path Manager}
 Trips and Bike Paths are the the key elements of the BBP platform. They will be implemented individually and in parallel, since they are equally important. They will be tested singularly first, then they will be integrated and tested together.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/trip_path.png}
+    \caption{Implementation step: 3}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Connector Module}
 Part of the logic resides on the client, this component is essential to switch message in a secured way between the mobile device and the Application Server. It must be implemented and tested individually using some drivers that simulate the messages sent from the client, then it will be integrated with the system and be tested altogether.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/connector.png}
+    \caption{Implementation step: 4}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Report Manager}
 This component must be implemented in this step since its function is a precursor for the next modules. It shall be tested isolated using drivers that simulate the reports arriving from the users, then it will be integrated and tested with the system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/report.png}
+    \caption{Implementation step: 5}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Street Manager}
 This component interact with the previous one and it's responsible to keep track of streets' updates and to propagate eventual changes. First, it gets implemented and tested using drivers that simulate the Reports. Then, it shall be integrated and tested with the other components.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/street.png}
+    \caption{Implementation step: 6}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Path Recommendation Engine}
 This component will handle users' researches on the platform and it consults the other modules and the database to retrieve the best paths. It shall be first implemented and tested through drivers. Then, it will be integrated and tested with the other components.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/recommendation.png}
+    \caption{Implementation step: 7}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Sensor Manager}
 This components is responsible to retrieve data from the client device. It will first be implemented and tested individually, then it will be integrated with the other components and it will be tested repeating some previous tests where drivers have been used.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/sensor.png}
+    \caption{Implementation step: 8}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Trip Detector}
 This component is implemented only at this step since it's an enhancement of the user experience. It shall be implemented and tested isolated first, then integrated with the other modules on the device, and later tested with the modules on the server.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/trip.png}
+    \caption{Implementation step: 9}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Metrics Engine}
 This one too is a medium priority component to be implemented and tested, first using some drivers. Only later, it will be integrated and tested with the system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/metrics.png}
+    \caption{Implementation step: 10}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{External API Manager}
 This is one of the low priority components to be implemented since its feature is to enrich the experience and it's easy to implement. Once it's been tested alone, it can be integrated and tested with the rest of the system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/api.png}
+    \caption{Implementation step: 11}
+    \label{fig:enter-label}
+\end{figure}
 \subsection{Offline Sync Module}
 This one is an extra component designed to enhance the user experience in case of external difficulties. Once it's been implemented and tested isolated, it shall be integrated with the system and finally test the whole system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.5\textwidth]{DD/Images/implementation/offline.png}
+    \caption{Implementation step: 12}
+    \label{fig:enter-label}
+\end{figure}
 \section{System Testing}
 
 %------------------------------------------------------
@@ -490,9 +562,9 @@ This one is an extra component designed to enhance the user experience in case o
 
 
 %------------------------------------------------------
-\listoffigures
+%\listoffigures
 
-\listoftables
+%\listoftables
 
 %------------------------------------------------------
 %------------------------------------------------------
