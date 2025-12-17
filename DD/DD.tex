@@ -383,13 +383,35 @@ The user searches for a Bike Path to reach a given destination from a given orig
 
 \subsection{Fat Client Interfaces}
 \subsubsection{Sensor Manager}
+\begin{itemize}
+    \item readSensorData()
+\end{itemize}
+
+\subsubsection{Trip Detector}
+\begin{itemize}
+    \item startTrip()
+    \item stopTrip()
+    \item detectCycling()
+\end{itemize}
+
+\subsubsection{Metrics Engine}
+\begin{itemize}
+    \item updateMetrics(SensorData: SensorData)
+    \item finalizeMetrics()
+\end{itemize}
+
+
+\subsubsection{Offline Sync Module}
+\begin{itemize}
+    \item 
+\end{itemize}
 
 
 \subsubsection{Connector Module interface}
 \begin{itemize}
     \item \texttt{POST /register}
     \begin{itemize}
-        \item{email=String \& password=String}
+        \item{userData=UserData}
     \end{itemize}
     \item \texttt{POST /login}
     \begin{itemize}
@@ -416,9 +438,67 @@ The user searches for a Bike Path to reach a given destination from a given orig
     \begin{itemize}
         \item{Data=TripData}
     \end{itemize}
-    \item \texttt{GET /path?origin\&destination}
-    
+    \item \texttt{GET /path?origin\&destination}    
 \end{itemize}
+
+
+\subsection{Application Server}
+\subsubsection{User Manager}
+\begin{itemize}
+    \item registerUser(userData: UserData)
+    \item authenticate(email: String, password: String)
+    \item deleteAccount(userID: Int)
+\end{itemize}
+
+\subsubsection{Trip Manager}
+\begin{itemize}
+    \item storeTrip(data: TripData, metrics: TripMetrics)
+    \item getTrips(userID: Int)
+    \item getTripDetails(id: Int)
+\end{itemize}
+
+\subsubsection{Bike Path Manager}
+\begin{itemize}
+    \item createPath(pathData: Path)
+\end{itemize}
+
+\subsubsection{Path Recommender Engine}
+\begin{itemize}
+    \item findsPath(origin: String, destination: String)
+\end{itemize}
+
+\subsubsection{Report Manager}
+\begin{itemize}
+    \item processReview(streets: list<Street>)
+\end{itemize}
+
+\subsubsection{Street Manager}
+\begin{itemize}
+    \item updateStreetStatus(streets: list<Street>)
+\end{itemize}
+
+\subsubsection{External API Manager}
+\begin{itemize}
+    \item getWeatherData(time: Time, location: String)
+    \item checkStreet(street: Street)
+\end{itemize}
+
+\subsubsection{Data Access Module}
+\begin{itemize}
+    \item checkEmailExist(email: String)
+    \item insertUser(userData: UserData)
+    \item getUser(email: String)
+    \item deleteUser(userId: Int)
+    \item saveTrip(data: TripData, metrics: TripMetrics, weather: WeatherData)
+    \item fetchTrips(userId: Int)
+    \item fetchTripDetails(id: Int)
+    \item updateStreet(street: Street)
+    \item storeBikePath(pathData: Path)
+    \item getCandidatePaths(origin: String, destination: String) %non sono sicuro di questi parametri
+\end{itemize}
+
+
+
 
 
 \section{Selected Architectural Styles and Patterns}
@@ -429,7 +509,7 @@ The user searches for a Bike Path to reach a given destination from a given orig
 
 %------------------------------------------------------
 \chapter{User Interface Design}
-The details of the UI have already been analyzed and showed in the User Interface section of the RASD document.
+The details of the UI have already been analyzed and showed in detail in the User Interface section of the RASD document.
 
 %------------------------------------------------------
 \chapter{Requirements traceability}
