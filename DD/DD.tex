@@ -397,9 +397,24 @@ The details of the UI have already been analyzed and showed in the User Interfac
 
 %------------------------------------------------------
 \chapter{Implementation, Integration and Test plan}
-
+This chapter includes the details regarding the implementation, integration and testing process. In particular, it shows the priority for each single component, regarding both the implementation and the integration. The chosen approach will follow a bottom-up strategy, starting from the individual modules so that the developers can focus on them singularly. Each component will be tested individually and, since the components interact with each other, drivers will be used to simulate the other participant modules. After that each module will be implemented and tested, the process will continue with the integration of the single parts in order to compose the final and complete system, ready for general testing.
 \section{Component Priority}
-
+The priority is chosen according to the essentiality of the module and to the interaction between modules, so that core functionalities and critical dependencies get implemented before those feature that enhance the user experience or that enrich the platform features.
+\begin{itemize}
+    \item \textbf{Sensor Manager}: high priority.
+    \item \textbf{Trip Detector}: medium priority.
+    \item \textbf{Metrics Engine}: high priority.
+    \item \textbf{Offline Sync Module}: low priority.
+    \item \textbf{Connector Module}: very high priority.
+    \item \textbf{User Manager}: very high priority.
+    \item \textbf{Trip Manager}: very high priority.
+    \item \textbf{Bike Path Manager}: very high priority.
+    \item \textbf{Path Recommendation Engine}: high priority.
+    \item \textbf{Report Manager}: high priority.
+    \item \textbf{Street Manager}: high priority.
+    \item \textbf{External API Manager}: low priority.
+    \item \textbf{Data Access Module}: very high priority.
+\end{itemize}
 \section{Integration and testing Plan}
 
 \section{System Testing}
