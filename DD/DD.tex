@@ -378,8 +378,48 @@ The user wants to publish a Bike Path converting data from a previous Trip. So d
 \end{figure}
 The user searches for a Bike Path to reach a given destination from a given origin. The request gets forwarded to the Server through the Connector Module. Here, the Path Recommendation Engine retrieves possible candidates from the Database through the Data Access Module. Then the module computes the score of the retrieved Bike Paths and it rank   to show them back to the user.
 \newpage
+
 \section{Component Interfaces}
-% TODO 
+
+\subsection{Fat Client Interfaces}
+\subsubsection{Sensor Manager}
+
+
+\subsubsection{Connector Module interface}
+\begin{itemize}
+    \item \texttt{POST /register}
+    \begin{itemize}
+        \item{email=String \& password=String}
+    \end{itemize}
+    \item \texttt{POST /login}
+    \begin{itemize}
+        \item{email=String \& password=String}
+    \end{itemize}
+    \item \texttt{DELETE /account}
+    \begin{itemize}
+        \item{UserID=int}
+    \end{itemize}
+    \item \texttt{POST /trip}
+    \begin{itemize}
+        \item{Data=TripData \& Metrics=TripMetrics}
+    \end{itemize}
+    \item \texttt{GET /trips}
+    \begin{itemize}
+        \item{UserID=int}
+    \end{itemize}
+    \item \texttt{GET /trip/\{id\}}
+    \item \texttt{POST /bikepath/manual}
+    \begin{itemize}
+        \item{Data=TripData}
+    \end{itemize}
+    \item \texttt{POST /bikepath/auto}
+    \begin{itemize}
+        \item{Data=TripData}
+    \end{itemize}
+    \item \texttt{GET /path?origin\&destination}
+    
+\end{itemize}
+
 
 \section{Selected Architectural Styles and Patterns}
 \textit{TODO: Gianluca}
