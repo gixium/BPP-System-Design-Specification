@@ -403,7 +403,8 @@ The user searches for a Bike Path to reach a given destination from a given orig
 
 \subsubsection{Offline Sync Module}
 \begin{itemize}
-    \item 
+    \item storeData(JSONData: String)
+    \item retrieveData()
 \end{itemize}
 
 
@@ -498,9 +499,6 @@ The user searches for a Bike Path to reach a given destination from a given orig
 \end{itemize}
 
 
-
-
-
 \section{Selected Architectural Styles and Patterns}
 \textit{TODO: Gianluca}
 
@@ -535,6 +533,10 @@ The priority is chosen according to the essentiality of the module and to the in
     \item \textbf{External API Manager}: low priority.
     \item \textbf{Data Access Module}: very high priority.
 \end{itemize}
+
+This prioritization ensures that core functionalities are implemented first
+
+
 \section{Integration and Testing Plan}
 The development process of the individual modules is structured following an order which allows the other components to be integrated as soon as possible, so that an early testing process will be guaranteed.
 \subsection{DBMS and Data Access Module}
@@ -546,7 +548,7 @@ The first step is to implement the DBMS and the module responsible for the commu
     \label{fig:enter-label}
 \end{figure}
 \subsection{User Manager}
-Once the dataset has been implemented and tested, the platform can't work without users and their interactions, so the next component to implement and to test is the User Manager. It will once be tested individually and then integrated with the DBMS.
+Once the database has been implemented and tested, the platform can't work without users and their interactions, so the next component to implement and to test is the User Manager. It will once be tested individually and then integrated with the DBMS.
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.5\textwidth]{DD/Images/implementation/user_manager.png}
@@ -633,8 +635,20 @@ This one is an extra component designed to enhance the user experience in case o
     \caption{Implementation step: 12}
     \label{fig:enter-label}
 \end{figure}
-\section{System Testing}
 
+\section{System Testing}
+After completing the development and integration phases with their relative tests, the platform will undergo \textbf{system testing}:
+\begin{itemize}
+    \item Use cases from the RASD document will be used to verify that all functionalities work as expected. Including verification on both functional and non-functional requirements.
+    
+    \item \textbf{Performance testing}: All the system (client/server) will be tested in order to find any bottlenecks and guarantee that all the performance requirements from the RASD document are met.
+    The client side of the system will be also tested on different devices (real/emulated) in order to ensure that the client side works fine on several devices.
+    
+    \item \textbf{Stress testing}: The system will be tested simulating lot of concurrent requests to ensure that the platform handles high loads in accordance to the estimates provided in the RASD document.
+    
+    \item \textbf{User interface testing}: The system UI will undergo testing on a wide variety of mobile devices in order to guarantee a correct UI rendering on different screen sizes.
+
+\end{itemize}
 %------------------------------------------------------
 \chapter{Effort spent}
 
