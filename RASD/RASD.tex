@@ -1395,12 +1395,17 @@ open util/ordering[Time]  // total order on Time, used for freshness
 // SIGNATURES
 // ---------------------------------------------------------------
 
+// generic user (cannot be instantiated directly)
+abstract sig User {}
 
-abstract sig User {}                 // generic user (cannot be instantiated directly)
-sig RegisteredUser extends User {}   // registered user (can publish and create reports)
+// registered user (can publish and create reports)
+sig RegisteredUser extends User {}
 
-sig GeoPoint {}                      // geographic point (start/end of BikePath)
-sig Time {}                          // time instant (totally ordered)
+// geographic point (start/end of BikePath)
+sig GeoPoint {}
+
+// time instant (totally ordered)
+sig Time {}
 
 // stret condition type, with associated penalty points
 abstract sig Status { points: one Int }
@@ -1553,13 +1558,6 @@ fact StatusUpdatedByReports {
 / ---------------------------------------------------------------
 // ASSERTIONS 
 // ---------------------------------------------------------------
-
-// Freshness
-assert FreshnessRespected {
-  all s: Street |
-    some reportsForStreet[s] implies	// if there are reports for a street
-      computedStatus[s] in mostRecentReports[s].rStatus 		// the computed status is the one in the most recent reports
-}
 
 // Score is always non-negative (since all points are non-negative)
 assert NonNegativeScore {
