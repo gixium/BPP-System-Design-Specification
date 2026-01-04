@@ -418,9 +418,17 @@ The user searches for a Bike Path to reach a given destination from a given orig
     \begin{itemize}
         \item{email=String \& password=String}
     \end{itemize}
+    \item \texttt{POST /logout}
+    \begin{itemize}
+        \item{UserID=int}
+    \end{itemize}
     \item \texttt{DELETE /account}
     \begin{itemize}
         \item{UserID=int}
+    \end{itemize}
+    \item \texttt{POST /recover_account}
+    \begin{itemize}
+        \item{email=String}
     \end{itemize}
     \item \texttt{POST /trip}
     \begin{itemize}
@@ -440,6 +448,12 @@ The user searches for a Bike Path to reach a given destination from a given orig
         \item{Data=TripData}
     \end{itemize}
     \item \texttt{GET /path?origin\&destination}    
+
+    \item \texttt{POST /update_preferences}
+    \begin{itemize}
+        \item{Preferences: Preferences}
+    \end{itemize}
+    
 \end{itemize}
 
 
@@ -449,6 +463,8 @@ The user searches for a Bike Path to reach a given destination from a given orig
     \item registerUser(userData: UserData)
     \item authenticate(email: String, password: String)
     \item deleteAccount(userID: Int)
+    \item recoverAccount(email: String)
+    \item updateUserPreferences(Preferences: Preferences)
 \end{itemize}
 
 \subsubsection{Trip Manager}
@@ -490,6 +506,7 @@ The user searches for a Bike Path to reach a given destination from a given orig
     \item insertUser(userData: UserData)
     \item getUser(email: String)
     \item deleteUser(userId: Int)
+    \item storePreferences(Preferences: preferences)
     \item saveTrip(data: TripData, metrics: TripMetrics, weather: WeatherData)
     \item fetchTrips(userId: Int)
     \item fetchTripDetails(id: Int)
