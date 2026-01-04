@@ -511,7 +511,59 @@ The details of the UI have already been analyzed and showed in detail in the Use
 
 %------------------------------------------------------
 \chapter{Requirements traceability}
-\textit{TODO: Gianluca}
+
+    \begin{longtable}{|p{0.5\textwidth}|p{0.5\textwidth}|}
+    
+    \hline
+    \textbf{Requirement} & \textbf{Component} \\
+    \hline
+    \endfirsthead
+    
+    \hline
+    \textbf{Requirement} & \textbf{Component} \\
+    \hline
+    \endhead
+    
+    \textbf{[R1]} The system shall allow potential service consumers to \textbf{create accounts}. & \textbf{User Manager} (registerUser(userData)), \textbf{Connector Module} (POST /register), \textbf{Data Access Module / DBMS} (insertUser(userData)) \\
+    \hline
+    \textbf{[R2]} Users shall be able to securely \textbf{login and logout} using a username-password system or third-party authentication. & \textbf{User Manager} (authenticate(email, password)), \textbf{Connector Module} (POST /login) \\
+    \hline
+    \textbf{[R3]} Users shall be able to \textbf{recover} their accounts using a password-recovery feature. & \textbf{User Manager} (recoverAccount(Id)), \textbf{Connector Module} (POST /recover\_account) \\
+    \hline
+    \textbf{[R4]} The system shall present a \textbf{consent} flow to collect explicit permission for background location/activity recognition and sensor data processing, storing such decision. & \textbf{User Manager} (updateUserPreferences(preferences)), \textbf{Connector Module} (POST /update\_preferences), \textbf{DBMS \& Data Access Module} (storePreferences(preferences)) \\
+    \hline
+    \textbf{[R5]} Registered users shall be able to configure preferred \textbf{units of measure} and language. & \textbf{User Manager} (updateUserPreferences(preferences)), \textbf{Connector Module} (POST /update\_preferences), \textbf{DBMS \& Data Access Module} (storePreferences(preferences)) \\
+    \hline
+    \textbf{[R6]} The system shall accept user input for \textbf{origin and destination} and display all possible bike paths, ordered by score. & \textbf{Path Recommendation Engine} (retrieval, scoring, ranking), \textbf{Connector Module} (GET /path?origin\&destination), \textbf{DBMS \& Data Access Module} (getCandidatePaths(origin, destination)) \\
+    \hline
+    \textbf{[R7]} Registered users shall be able to \textbf{manually create bike paths} (i.e.,"Manual Mode") by providing: a starting point; a finishing point; an ordered sequence of streets, specifying their overall status and the presence of irregularities (e.g., potholes). & \textbf{Bike Path Manager} (creation, validation, publication), \textbf{Report Manager} (processReview(streets)), \textbf{Street Manager} (updateStreetStatus(streets)), \textbf{External API Manager} (checkStreet(street)), \textbf{DBMS \& Data Access Module} (storeBikePath(pathData), updateStreet(street)) \\
+    \hline
+    \textbf{[R8]} Registered users shall be able to evaluate, modify (if necessary) and approve potential \textbf{obstacles} detected by the system in Automatic Mode for a bike path, assessing the correctness of information before publication. & \textbf{Report Manager} (processReview(streets)), \textbf{Bike Path Manager} (createPath(pathData)), \textbf{Street Manager} (updateStreetStatus(streets)) \\
+    \hline
+    \textbf{[R9]} Registered users shall be able to \textbf{delete} their profiles. & \textbf{User Managr} (deleteAccount(userID)), \textbf{Connector Module} (DELETE /account), \textbf{DBMS \& Data Access Module} (deleteUser(userId)) \\
+    \hline
+    \textbf{[R10]} Registered users shall be able to \textbf{monitor} trip metrics. & \textbf{Metrics Engine} (updateMetrics(SensorData)), \textbf{Trip Manager} (getTrips(userID), getTripDetails(id)), \textbf{Connector Module} (GET /trips, GET /trip/\{id\}) \\
+    \hline
+    \textbf{[R11]} Registered users shall be able to \textbf{manually start} a trip. & \textbf{Trip Detector} (startTrip(), stopTrip()), \textbf{Sensor Manager} (readSensorData()), \textbf{Metrics Engine} (updateMetrics(SensorData)) \\
+    \hline
+    \textbf{[R12]} The system shall \textbf{record} personal \textbf{trips} and present statistics (distance, time, average speed) and, when available, weather data associated with the trip period. & \textbf{Trip Manager} (store and enrichment), \textbf{Metrics Engine} (updateMetrics(SensorData)), \textbf{External API Manager} (getWeatherData(time, location)), \textbf{DBMS \& Data Access Module} (saveTrip(data, metrics, weather)) \\
+    \hline
+    \textbf{[R13]} The system shall allow offline trip recording (street-queuing data et al) and automatically \textbf{sync} when connectivity is restored. & \textbf{Offline Sync Module} (storeData(JSONData), retrieveData()), \textbf{Connector Module} (POST /trip), \textbf{DBMS \& Data Access Module} (saveTrip(data, metrics, weather)) \\
+    \hline
+    \textbf{[R14]} The system shall be able to \textbf{automatically create bike paths} (i.e., "Automatic Mode") by processing data from the sensors of the device of the user (GPS, accelerometer, gyroscope). & \textbf{Sensor Manager} (gather GPS/IMU data with readSensorData()), \textbf{Trip Detector} (detectCycling()), \textbf{Bike Path Manager} (createPath(pathData)), \textbf{DBMS \& Data Access Module} (storeBikePath(pathData)) \\
+    \hline
+    \textbf{[R15]} The system shall be able to \textbf{save} manually created bike paths, allowing registered users to create bike paths in "Manual Mode". & \textbf{Bike Path Manager} (createPath(pathData)), \textbf{DBMS \& Data Access Module} (storeBikePath(pathData)) \\
+    \hline
+    \textbf{[R16]} The system shall support \textbf{auto-pause/auto-resume} when the user stops/moves again below/above thresholds. & \textbf{Trip Detector} (detectCycling()), \textbf{Metrics Engine} (updateMetrics(SensorData)) \\
+    \hline
+    \textbf{[R17]} The system shall verify the \textbf{compliance of streets}, allowing streets that satisfy defined criteria to be included in bike paths (e.g., average bike speed limit, roadway width, traffic volume, dedicated bike lanes). & \textbf{External API Manager} (checkStreet(street)), \textbf{Bike Path Manager} (createPath(pathData)), \textbf{Street Manager} (updateStreetStatus(streets)) \\
+    \hline
+    \textbf{[R18]} The system shall prevent registered users from publishing bike paths with \textbf{unallowed} streets. & \textbf{Bike Path Manager} (createPath(pathData)), \textbf{External API Manager} (checkStreet(street)) \\
+    \hline
+    \textbf{[R19]} The system shall \textbf{merge multiple contributions} related to the same streets using at least freshness and number of confirmations, propagating the update to bike paths that include them. & \textbf{Street Manager} (updateStreetStatus(streets)), \textbf{Report Manager} (processReview(streets)), \textbf{Bike Path Manager} (createPath(pathData)) \\
+    \hline
+    \caption{Requirements Traceability}
+    \end{longtable}
 
 %------------------------------------------------------
 \chapter{Implementation, Integration and Test plan}
