@@ -526,21 +526,21 @@ BBP follows different pattern to ensure good scalability, maintainability and us
 The system, as already described in this chapter, is based on a \textbf{3 tier} Client-Server architecture.
 This is done in order to divide responsibilities between multiple layers:
 \begin{itemize}
-    \item \textbf{Presentation layer:} the mobile application manages: user interfaces, some logic that must run into the client and backend communication.
-    \item \textbf{Application layer:} The core business logic is implemented on the application server and it can retrieve data from the Data layer. 
-    \item \textbf{Data layer:} A DBMS based on postgreSQL stores persistent data.
+    \item \textbf{Presentation layer:} the mobile application manages user interfaces, logic that must run into the client and backend communication.
+    \item \textbf{Application layer:} the core business logic is implemented on the application server and it can retrieve data from the Data layer. 
+    \item \textbf{Data layer:} a DBMS based on postgreSQL stores persistent data.
 \end{itemize}
 
 \subsection{RESTfull architecture}
 The integration between the client and the application server is performed using a RESTful architecture.
-the main feature is it's statelessness, which means that servers maintain no information about past requests. Instead, each client request must contain all necessary context, making both front end and backend development and testing easier.
+The main feature is it's statelessness, meaning that servers maintain no information about past requests; instead, each client request must contain all necessary context, making it easier to develop and test both front end and backend.
 
 \subsection{MVC}
-The MVC pattern is used in the client application to separate the user interface, application logic, and local data management. 
-This pattern ensures a clear division of responsibilities, making the application easier to maintain. In addition it can benefit the development with it's clear division of roles.
+The MVC pattern is used in the client application to separate user interface, application logic and local data management. 
+This pattern ensures a clear division of responsibilities, also making the application easier to maintain. In addition it can benefit the development with it's clear division of roles.
 
 \subsection{Microservice Pattern}
-The application server adopts a microservice approach, splitting the business logic into independent and decoupled services as seen in \textbf{section 2.2.2}
+The application server adopts a microservice approach, splitting the business logic into independent and decoupled services as seen in \textbf{section 2.2.2}.
 Each \textbf{service} can be developed, tested and replicated independently, ensuring scalability and resilience.
 
 \subsection{Load Balancing}
