@@ -222,12 +222,13 @@ Polytechnic University of Milan, \textit{Specifications of the DD assignment for
     This document is structured into seven main chapters.
     \begin{enumerate}
         \item \textbf{Introduction:} it provides a high-level overview of the project and defines the main terminology and acronyms used throughout the document.
-        \item \textbf{Architectural Design:} it describes the system architecture, starting from the 3-tier model and then the design through multiple components.
+        \item \textbf{Architectural Design:} it describes the system architecture, from the 3-tier model to the design through multiple components.
         \item \textbf{User Interface Design:} it is related to UI aspects.
         \item \textbf{Requirements traceability:} it contains a detailed mapping of the RASD Requirements into design elements.
-        \item \textbf{Implementation, Integration and Test plan:} it outlines the development strategy where each module is implemented and tested in isolation and then incrementally integrated into the complete system, followed by system-level testing.
+        \item \textbf{Implementation, Integration and Test plan:} it outlines the development strategy where each module is implemented and tested in isolation and, then, incrementally integrated into the complete system, followed by system-level testing.
         \item \textbf{Effort spent:} it indicates how the workload has been distributed among the contributors.
         \item \textbf{References:} it includes references to documents and tools that have been used in the writing of the document. 
+        \item \textbf{Use of Generative AI: } it includes eventual AI tools used for the realization of this document.
     \end{enumerate}
 
 %------------------------------------------------------
@@ -520,26 +521,26 @@ The user searches for a Bike Path to reach a given destination from a given orig
 
 
 \section{Selected Architectural Styles and Patterns}
-BBP follows different pattern to ensure good scalability, maintainability and usability
+BBP follows different patterns to ensure good scalability, maintainability and usability.
 
-\subsection{Client-Server Architecture}
+\subsubsection{Client-Server Architecture}
 The system, as already described in this chapter, is based on a \textbf{3 tier} Client-Server architecture.
 This is done in order to divide responsibilities between multiple layers:
 \begin{itemize}
     \item \textbf{Presentation layer:} the mobile application manages user interfaces, logic that must run into the client and backend communication.
     \item \textbf{Application layer:} the core business logic is implemented on the application server and it can retrieve data from the Data layer. 
-    \item \textbf{Data layer:} a DBMS based on postgreSQL stores persistent data.
+    \item \textbf{Data layer:} a DBMS, based on postgreSQL, stores persistent data.
 \end{itemize}
 
-\subsection{RESTfull architecture}
+\subsubsection{RESTfull architecture}
 The integration between the client and the application server is performed using a RESTful architecture.
-The main feature is it's statelessness, meaning that servers maintain no information about past requests; instead, each client request must contain all necessary context, making it easier to develop and test both front end and backend.
+Its main feature is the statelessness, meaning that servers maintain no information about past requests; instead, each client request must contain all necessary context, making it easier to develop and test both frontend and backend.
 
-\subsection{MVC}
+\subsubsection{MVC}
 The MVC pattern is used in the client application to separate user interface, application logic and local data management. 
 This pattern ensures a clear division of responsibilities, also making the application easier to maintain. In addition it can benefit the development with it's clear division of roles.
 
-\subsection{Microservice Pattern}
+\subsubsection{Microservice Pattern}
 The application server adopts a microservice approach, splitting the business logic into independent and decoupled services as seen in \textbf{section 2.2.2}.
 Each \textbf{service} can be developed, tested and replicated independently, ensuring scalability and resilience.
 
@@ -768,14 +769,14 @@ Chapter 5 & 5 hours & 5 hours & 4 hours \\
 \label{tab:effort_spent}
 \end{table}
 
-\chapter{Use of Generative AI}
+\chapter{References}
 \begin{itemize}
     \item Microservice Pattern: https://microservices.io/patterns/index.html
 \end{itemize}
 
 \chapter{Use of Generative AI}
 \begin{itemize}
-    \item \textbf{Writefull for Overleaf:} GEN-AI integration for overleaf offering real time language feedback 
+    \item \textbf{Writefull for Overleaf:} GEN-AI integration for Overleaf offering real time language feedback.
 \end{itemize}
 
 
