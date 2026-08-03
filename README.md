@@ -281,7 +281,3 @@ Course: **Software Engineering 2**, Politecnico di Milano, A.Y. 2025/2026
 Supervisor: **Prof. Elisabetta Di Nitto**
 
 ---
-
-<div align="center">
-  <sub>Awarded maximum grade with honors (30L/30).</sub>
-</div>
